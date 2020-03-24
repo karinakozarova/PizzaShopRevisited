@@ -1,32 +1,51 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PizzaShop
 {
     public partial class Form1 : Form
     {
+        Shop s;
         public Form1()
         {
             InitializeComponent();
+            s = new Shop("My Shop");
+
+            PopulateAll();
+
+            revenueDateTImePicker.Value = DateTime.Today;
+        }
+
+        private void PopulateAll()
+        {
             RefreshCustomers();
             RefreshDrinks();
             RefreshPizzas();
+            ReloadDrinks();
+            ReloadPizzas();
+            PopulateOrders();
         }
 
+        private void PopulateOrders()
+        {
+            List<Order> orders = s.GetOrders();
+
+            allOrdersLbx.Items.Clear();
+            foreach (Order o in orders)
+            {
+                allOrdersLbx.Items.Add(o);
+            }
+        }
         private void RefreshCustomers()
         {
             customersLbx.Items.Clear();
+            customerOrderTbx.Items.Clear();
             List<Customer> customers = Customer.GetAllCustomers();
             foreach (Customer c in customers)
             {
                 customersLbx.Items.Add(c);
+                customerOrderTbx.Items.Add(c);
             }
         }
         private void RefreshDrinks()
@@ -56,7 +75,8 @@ namespace PizzaShop
                 return;
             }
 
-            if (!String.IsNullOrEmpty(emailNameTbx.Text) && !Utils.IsValidEmail(emailNameTbx.Text)){
+            if (!String.IsNullOrEmpty(emailNameTbx.Text) && !Utils.IsValidEmail(emailNameTbx.Text))
+            {
                 MessageBox.Show("Enter valid email");
                 return;
             }
@@ -72,7 +92,7 @@ namespace PizzaShop
                 return;
             }
 
-            if(drinkPriceBttn.Value == 0)
+            if (drinkPriceBttn.Value == 0)
             {
                 MessageBox.Show("Enter price");
                 return;
@@ -91,7 +111,7 @@ namespace PizzaShop
                 return;
             }
 
-        
+
             if (pizzaThickPriceInput.Value == 0)
             {
                 MessageBox.Show("Enter price");
@@ -108,6 +128,95 @@ namespace PizzaShop
 
             Pizza p = new Pizza(pizzaNameTbx.Text, thick, filled);
             RefreshPizzas();
+        }
+
+        private void revenueDateTImePicker_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addPizzaToOrderBttn_Click(object sender, EventArgs e)
+        {
+            (new AddPizzaToOrder()).Show();
+            ReloadPizzas();
+        }
+
+        private void ReloadDrinks()
+        {
+            orderedDrinksLbx.Items.Clear();
+            List<OrderedDrink> drinks = OrderedDrink.GetAllDrinks();
+            foreach (OrderedDrink d in drinks)
+            {
+                orderedDrinksLbx.Items.Add(d);
+            }
+        }
+        private void ReloadPizzas()
+        {
+            orderedPizzasLbx.Items.Clear();
+            List<OrderedPizza> pizzas = OrderedPizza.GetAllOrderedPizzas();
+            foreach (OrderedPizza d in pizzas)
+            {
+                orderedPizzasLbx.Items.Add(d);
+            }
+        }
+
+        private void addDrinkToOrderBttn_Click(object sender, EventArgs e)
+        {
+            (new AddDrinkToOrder()).Show();
+            ReloadDrinks();
+        }
+
+        private void clearBttn_Click(object sender, EventArgs e)
+        {
+            OrderedDrink.ClearFile();
+            OrderedPizza.ClearFile();
+            orderedDrinksLbx.Items.Clear();
+            orderedPizzasLbx.Items.Clear();
+        }
+
+        private void saveOrderBttn_Click(object sender, EventArgs e)
+        {
+            if (orderedDrinksLbx.Items.Count == 0 || orderedPizzasLbx.Items.Count == 0)
+            {
+                MessageBox.Show("An order must have at least one pizza and one drink.");
+                return;
+            }
+
+            if (customerOrderTbx.SelectedIndex == -1)
+            {
+                MessageBox.Show("Select a customer.");
+                return;
+            }
+
+            List<OrderedPizza> pizzas = new List<OrderedPizza>();
+            List<OrderedDrink> drinks = new List<OrderedDrink>();
+            foreach (OrderedPizza p in orderedPizzasLbx.Items)
+            {
+                pizzas.Add(p);
+            }
+            foreach (OrderedDrink d in orderedDrinksLbx.Items)
+            {
+                drinks.Add(d);
+            }
+            Customer customer = (Customer)customerOrderTbx.SelectedItem;
+            s.AddOrder(new Order(customer, pizzas, drinks, true));
+            MessageBox.Show("Order was successfully added");
+        }
+
+        private void reloadBttn_Click(object sender, EventArgs e)
+        {
+            ReloadDrinks();
+            ReloadPizzas();
+        }
+
+        private void cancelOrderBttn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void editCustomerBtn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -65,15 +65,20 @@ namespace PizzaShop
         {
             using (StreamWriter sw = File.AppendText(filename))
             {
-                sw.WriteLine(string.Join(", ", OrderedPizza.PizzaOrderToCSV(pizza, quantity)));
+                sw.WriteLine(string.Join(", ", OrderedPizza.PizzaOrderToCSV(pizza, quantity, isFilled, IsThick)));
                 sw.Close();
             }
             return 1;
         }
 
-        public static string PizzaOrderToCSV(Pizza pizza, int quantity)
+        public static string PizzaOrderToCSV(Pizza pizza, int quantity, bool isFilled, bool IsThick)
         {
-            return Pizza.PizzaToCSV(pizza.PizzaBaseName, pizza.ThicknessAdditionPrice, pizza.FilledAdditionPrice) + ',' + quantity;
+            return Pizza.PizzaToCSV(pizza.PizzaBaseName, pizza.ThicknessAdditionPrice, pizza.FilledAdditionPrice) + ',' + quantity + ',' + isFilled + ',' + IsThick;
+        }
+
+        public static void ClearFile()
+        {
+            System.IO.File.WriteAllText(filename, string.Empty);
         }
 
         public OrderedPizza GetOrderedPizzaById(int id)
@@ -81,8 +86,23 @@ namespace PizzaShop
             throw new NotImplementedException();
         }
 
-        public List<OrderedPizza> GetAllOrderedPizzas()
+        public static List<OrderedPizza> GetAllOrderedPizzas()
         {
+            List<OrderedPizza> pizzas = new List<OrderedPizza>();
+            using (StreamReader file = new StreamReader(filename))
+            {
+                string line;
+
+                while ((line = file.ReadLine()) != null)
+                {
+                    List<String> data = line.Split(',').ToList();
+                    Pizza pizza = new Pizza(1, data[0], float.Parse(data[1]), float.Parse(data[2]));
+                    OrderedPizza ordered = new OrderedPizza(1, pizza, Convert.ToInt32(data[3]), bool.Parse(data[4]), bool.Parse(data[5]));
+                    pizzas.Add(ordered);
+                }
+                file.Close();
+            }
+            return pizzas;
             throw new NotImplementedException();
         }
 

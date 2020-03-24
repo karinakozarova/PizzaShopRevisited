@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ namespace PizzaShop
 {
     class Order
     {
+        const string filename = "orders";
         // properties
         public DateTime OrderedAt
         {
@@ -30,11 +32,60 @@ namespace PizzaShop
         private List<OrderedDrink> drinks;
 
         // constructors
-        public Order(Customer Customer, List<OrderedPizza> pizzas = null, List<OrderedDrink> drinks = null)
+        public Order(Customer Customer, List<OrderedPizza> pizzas = null, List<OrderedDrink> drinks = null, bool temporary = false)
         {
             this.Customer = Customer;
             this.pizzas = pizzas;
             this.drinks = drinks;
+            this.IsCancelled = false;
+            this.OrderedAt = Utils.GetDateTime();
+            if(!temporary) AddOrderToFile(Customer, pizzas , drinks, IsCancelled, OrderedAt);
+        }
+
+        private int AddOrderToFile(Customer customer, List<OrderedPizza> pizzas, List<OrderedDrink> drinks, bool IsCancelled, DateTime OrderedAt)
+        {
+            using (StreamWriter sw = File.AppendText(filename))
+            {
+                sw.WriteLine(string.Join(", ", Order.OrderToCSV(customer, pizzas, drinks, IsCancelled, OrderedAt)));
+                sw.Close();
+            }
+
+            return 1; // TODO: return the last id
+        }
+
+        internal static string OrderToCSV(Customer customer, List<OrderedPizza> pizzas, List<OrderedDrink> drinks, bool IsCancelled, DateTime OrderedAt)
+        {
+            return IsCancelled + "," + OrderedAt + "," + Customer.CustomerToCSV(customer) + PizzaOrdersToCSV(pizzas) + DrinkOrdersToCSV(drinks);
+        }
+
+        private static string DrinkOrdersToCSV(List<OrderedDrink> drinks)
+        {
+            string result = "";
+            foreach(OrderedDrink d in drinks)
+            {
+                result += ",";
+                result += OrderedDrink.DrinkOrderToCSV(d.Drink, d.Quantity);
+            }
+            return result;
+        }
+
+        private static string PizzaOrdersToCSV(List<OrderedPizza> pizzas)
+        {
+            string result = "";
+            foreach (OrderedPizza p in pizzas)
+            {
+                result += ",";
+                result += OrderedPizza.PizzaOrderToCSV(p.Pizza, p.Quantity, p.IsFilled, p.IsThick);
+            }
+            return result;
+        }
+
+        public Order(int id,Customer Customer, List<OrderedPizza> pizzas = null, List<OrderedDrink> drinks = null)
+        {
+            this.Customer = Customer;
+            this.pizzas = pizzas;
+            this.drinks = drinks;
+            this.IsCancelled = false;
         }
 
         // methods
@@ -64,6 +115,33 @@ namespace PizzaShop
         public List<Order> GetOrders(String filter)
         {
             throw new NotImplementedException();
+        }
+
+        internal static string OrderToCSV(Order o)
+        {
+            return o.IsCancelled + "," + o.OrderedAt + "," + o.Customer + o.PizzasToCSV() + o.DrinksToCSV();
+        }
+
+        public string DrinksToCSV()
+        {
+            string result = "";
+            foreach(OrderedDrink d in drinks)
+            {
+                result += ',';
+                result += OrderedDrink.DrinkOrderToCSV(d.Drink, d.Quantity);
+            }
+            return result;
+        }
+
+        private string PizzasToCSV()
+        {
+            string result = "";
+            foreach (OrderedPizza p in pizzas)
+            {
+                result += ',';
+                result += OrderedPizza.PizzaOrderToCSV(p.Pizza, p.Quantity, p.IsFilled, p.IsThick); 
+            }
+            return result;
         }
 
         public float CalculateTotalCost()

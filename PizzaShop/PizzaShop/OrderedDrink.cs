@@ -39,6 +39,7 @@ namespace PizzaShop
         {
             this.Drink = drink;
             this.Quantity = quantity;
+            // TODO: clear file here
             AddOrderedDrinkToFile(drink, quantity);
         }
 
@@ -79,7 +80,7 @@ namespace PizzaShop
         /// <param name="drink"> the drink object </param>
         /// <param name="quantity"> ordered quantity</param>
         /// <returns></returns>
-        private static string DrinkOrderToCSV(Drink drink, int quantity)
+        public static string DrinkOrderToCSV(Drink drink, int quantity)
         {
             return Drink.DrinkToCSV(drink.Name, drink.Price) + ',' + quantity;
         }
@@ -93,9 +94,9 @@ namespace PizzaShop
         /// Get all the saved drinks from file
         /// </summary>
         /// <returns> list of drinks </returns>
-        public static List<Drink> GetAllDrinks()
+        public static List<OrderedDrink> GetAllDrinks()
         {
-            List<Drink> drinks = new List<Drink>();
+            List<OrderedDrink> drinks = new List<OrderedDrink>();
             using (StreamReader file = new StreamReader(filename))
             {
                 string line;
@@ -103,8 +104,9 @@ namespace PizzaShop
                 while ((line = file.ReadLine()) != null)
                 {
                     List<String> data = line.Split(',').ToList();
-                    Drink d = new Drink(1, data[0], 2.00f);
-                    drinks.Add(d);
+                    Drink drink = new Drink(1, data[0], float.Parse(data[1]));
+                    OrderedDrink ordered = new OrderedDrink(1, drink, Convert.ToInt32(data[2]));
+                    drinks.Add(ordered);
                 }
                 file.Close();
             }
@@ -119,5 +121,10 @@ namespace PizzaShop
         {
             return $"{this.Drink.Name} {this.Quantity} X {this.Drink.Price}";
         }
+        public static void ClearFile()
+        {
+            Utils.ClearFile(filename);
+        }
+
     }
 }

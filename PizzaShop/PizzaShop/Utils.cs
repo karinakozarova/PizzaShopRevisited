@@ -21,5 +21,10 @@ namespace PizzaShop
                 return false;
             }
         }
+
+        public static void ClearFile(string filename)
+        {
+            System.IO.File.WriteAllText(filename, string.Empty);
+        }
     }
 }

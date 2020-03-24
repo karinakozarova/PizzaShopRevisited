@@ -106,7 +106,7 @@ namespace PizzaShop
             return customers;
         }
 
-        private string CustomerToCSV()
+        public string CustomerToCSV()
         {
             return this.Name + ',' + this.Email;
         }
@@ -114,6 +114,10 @@ namespace PizzaShop
         private static string CustomerToCSV(string name, string email)
         {
             return name + ',' + email;
+        }
+        public static string CustomerToCSV(Customer c)
+        {
+            return c.Name + ',' + c.Email;
         }
 
         /// <summary>
