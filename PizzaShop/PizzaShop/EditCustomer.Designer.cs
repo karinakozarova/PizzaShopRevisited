@@ -64,6 +64,7 @@
             this.addNewCustomerBttn.TabIndex = 9;
             this.addNewCustomerBttn.Text = "Add Customer";
             this.addNewCustomerBttn.UseVisualStyleBackColor = true;
+            this.addNewCustomerBttn.Click += new System.EventHandler(this.addNewCustomerBttn_Click);
             // 
             // emailNameTbx
             // 

@@ -31,7 +31,7 @@ namespace PizzaShop
                 while ((line = file.ReadLine()) != null)
                 {
                     List<String> data = line.Split(',').ToList();
-                    orders.Add(new Order(new Customer(1, "d", "d"))); // TODO: fix this
+                   // orders.Add(new Order(new Customer(1, "d", "d"))); // TODO: fix this
                 }
                 file.Close();
             }

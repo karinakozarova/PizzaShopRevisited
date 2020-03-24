@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace PizzaShop
 {
-    class Customer
+    public class Customer
     {
         // class constants
         const string filename = "customer";
@@ -53,6 +53,18 @@ namespace PizzaShop
             this.Id = id;
             this.Name = name;
             this.Email = email;
+        }
+
+        public void EditCustomer(string name, string email)
+        {
+            string previousValue = this.CustomerToCSV();
+            this.Name = name;
+            this.Email = email;
+            string newValue = this.CustomerToCSV();
+
+            string text = File.ReadAllText(filename);
+            text = text.Replace(previousValue, newValue);
+            File.WriteAllText(filename, text);
         }
 
         // methods

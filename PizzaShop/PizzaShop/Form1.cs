@@ -17,7 +17,7 @@ namespace PizzaShop
             revenueDateTImePicker.Value = DateTime.Today;
         }
 
-        private void PopulateAll()
+        public void PopulateAll()
         {
             RefreshCustomers();
             RefreshDrinks();
@@ -216,7 +216,14 @@ namespace PizzaShop
 
         private void editCustomerBtn_Click(object sender, EventArgs e)
         {
+            if(customersLbx.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select the customer to Edit");
+                return;
+            }
 
+            Customer customer = (Customer)customersLbx.SelectedItem;
+            (new EditCustomer(customer)).Show();
         }
     }
 }
