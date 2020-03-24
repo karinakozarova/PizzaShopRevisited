@@ -53,6 +53,11 @@ namespace PizzaShop
             return 1; // TODO: return the last id
         }
 
+        internal string OrderToCSV()
+        {
+            return IsCancelled + "," + OrderedAt + "," + Customer.CustomerToCSV(Customer) + PizzaOrdersToCSV(pizzas) + DrinkOrdersToCSV(drinks);
+        }
+
         internal static string OrderToCSV(Customer customer, List<OrderedPizza> pizzas, List<OrderedDrink> drinks, bool IsCancelled, DateTime OrderedAt)
         {
             return IsCancelled + "," + OrderedAt + "," + Customer.CustomerToCSV(customer) + PizzaOrdersToCSV(pizzas) + DrinkOrdersToCSV(drinks);
@@ -94,7 +99,13 @@ namespace PizzaShop
         /// </summary>
         public void Cancel()
         {
+            string previousValue = this.OrderToCSV();
             this.IsCancelled = true;
+            string newValue = this.OrderToCSV();
+
+            string text = File.ReadAllText(filename);
+            text = text.Replace(previousValue, newValue);
+            File.WriteAllText(filename, text);
         }
 
         public void GenerateReceipt()

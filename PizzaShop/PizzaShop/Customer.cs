@@ -66,6 +66,14 @@ namespace PizzaShop
             text = text.Replace(previousValue, newValue);
             File.WriteAllText(filename, text);
         }
+        public void Delete()
+        {
+            var tempFile = Path.GetTempFileName();
+            var linesToKeep = File.ReadLines(filename).Where(l => l != this.CustomerToCSV());
+            File.WriteAllLines(tempFile, linesToKeep);
+            File.Delete(filename);
+            File.Move(tempFile, filename);
+        }
 
         // methods
 
@@ -140,5 +148,6 @@ namespace PizzaShop
         {
             return this.Name;
         }
+
     }
 }

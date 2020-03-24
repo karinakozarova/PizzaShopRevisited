@@ -11,9 +11,7 @@ namespace PizzaShop
         {
             InitializeComponent();
             s = new Shop("My Shop");
-
             PopulateAll();
-
             revenueDateTImePicker.Value = DateTime.Today;
         }
 
@@ -37,6 +35,7 @@ namespace PizzaShop
                 allOrdersLbx.Items.Add(o);
             }
         }
+
         private void RefreshCustomers()
         {
             customersLbx.Items.Clear();
@@ -48,6 +47,7 @@ namespace PizzaShop
                 customerOrderTbx.Items.Add(c);
             }
         }
+
         private void RefreshDrinks()
         {
             drinksLbx.Items.Clear();
@@ -55,6 +55,7 @@ namespace PizzaShop
             foreach (Drink d in drinks)
             {
                 drinksLbx.Items.Add(d);
+           
             }
         }
         private void RefreshPizzas()
@@ -166,12 +167,17 @@ namespace PizzaShop
             ReloadDrinks();
         }
 
+        private void ClearOrder()
+        {
+            orderedDrinksLbx.Items.Clear();
+            orderedPizzasLbx.Items.Clear();
+        }
+
         private void clearBttn_Click(object sender, EventArgs e)
         {
             OrderedDrink.ClearFile();
             OrderedPizza.ClearFile();
-            orderedDrinksLbx.Items.Clear();
-            orderedPizzasLbx.Items.Clear();
+            ClearOrder();
         }
 
         private void saveOrderBttn_Click(object sender, EventArgs e)
@@ -200,6 +206,7 @@ namespace PizzaShop
             }
             Customer customer = (Customer)customerOrderTbx.SelectedItem;
             s.AddOrder(new Order(customer, pizzas, drinks, true));
+            ClearOrder();
             MessageBox.Show("Order was successfully added");
         }
 
@@ -224,6 +231,25 @@ namespace PizzaShop
 
             Customer customer = (Customer)customersLbx.SelectedItem;
             (new EditCustomer(customer)).Show();
+        }
+
+        private void deleteCustomerBttn_Click(object sender, EventArgs e)
+        {
+            if (customersLbx.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select the customer to Edit");
+                return;
+            }
+
+            Customer customer = (Customer)customersLbx.SelectedItem;
+
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result = MessageBox.Show("Are you sure you want to delete this customer?", "Delete Customer", buttons);
+            if (result == DialogResult.Yes)
+            {
+                customer.Delete();
+            }
+            PopulateAll();
         }
     }
 }

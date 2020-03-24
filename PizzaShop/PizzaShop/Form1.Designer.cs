@@ -76,6 +76,7 @@
             this.removeOrderBttn = new System.Windows.Forms.Button();
             this.viewReceiptBttn = new System.Windows.Forms.Button();
             this.editCustomerBtn = new System.Windows.Forms.Button();
+            this.deleteCustomerBttn = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -100,7 +101,7 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1189, 553);
+            this.tabControl1.Size = new System.Drawing.Size(1189, 570);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -113,7 +114,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 42);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1181, 507);
+            this.tabPage1.Size = new System.Drawing.Size(1181, 524);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Shop";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -258,6 +259,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.deleteCustomerBttn);
             this.tabPage3.Controls.Add(this.editCustomerBtn);
             this.tabPage3.Controls.Add(this.customersLbx);
             this.tabPage3.Controls.Add(this.label2);
@@ -269,7 +271,7 @@
             this.tabPage3.Controls.Add(this.customerNameTbx);
             this.tabPage3.Location = new System.Drawing.Point(4, 42);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1181, 507);
+            this.tabPage3.Size = new System.Drawing.Size(1181, 524);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Customers";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -588,19 +590,29 @@
             // 
             // editCustomerBtn
             // 
-            this.editCustomerBtn.Location = new System.Drawing.Point(524, 411);
+            this.editCustomerBtn.Location = new System.Drawing.Point(768, 411);
             this.editCustomerBtn.Name = "editCustomerBtn";
-            this.editCustomerBtn.Size = new System.Drawing.Size(618, 55);
+            this.editCustomerBtn.Size = new System.Drawing.Size(374, 93);
             this.editCustomerBtn.TabIndex = 9;
             this.editCustomerBtn.Text = "Edit selected customer";
             this.editCustomerBtn.UseVisualStyleBackColor = true;
             this.editCustomerBtn.Click += new System.EventHandler(this.editCustomerBtn_Click);
             // 
+            // deleteCustomerBttn
+            // 
+            this.deleteCustomerBttn.Location = new System.Drawing.Point(524, 411);
+            this.deleteCustomerBttn.Name = "deleteCustomerBttn";
+            this.deleteCustomerBttn.Size = new System.Drawing.Size(224, 93);
+            this.deleteCustomerBttn.TabIndex = 10;
+            this.deleteCustomerBttn.Text = "Delete selected customer";
+            this.deleteCustomerBttn.UseVisualStyleBackColor = true;
+            this.deleteCustomerBttn.Click += new System.EventHandler(this.deleteCustomerBttn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1213, 577);
+            this.ClientSize = new System.Drawing.Size(1213, 584);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -673,6 +685,7 @@
         private System.Windows.Forms.Button cancelOrderBttn;
         private System.Windows.Forms.Button viewReceiptBttn;
         private System.Windows.Forms.Button editCustomerBtn;
+        private System.Windows.Forms.Button deleteCustomerBttn;
     }
 }
 

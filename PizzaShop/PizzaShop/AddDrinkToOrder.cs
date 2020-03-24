@@ -38,6 +38,14 @@ namespace PizzaShop
             int quantity = Convert.ToInt32(QuantityInput.Value);
             Drink drink = (Drink)drinksTbx.SelectedItem;
             new OrderedDrink(drink, quantity);
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is Form1)
+                {
+                    Form1 currentform = (Form1)form;
+                    currentform.PopulateAll();
+                }
+            }
             this.Close();
         }
     }

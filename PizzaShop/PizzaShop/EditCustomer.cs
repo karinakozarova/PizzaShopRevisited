@@ -37,7 +37,7 @@ namespace PizzaShop
                     currentform.PopulateAll();
                 }
             }
-            this.Hide();
+            this.Close();
         }
     }
 }
