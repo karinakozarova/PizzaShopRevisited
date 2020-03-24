@@ -1,15 +1,14 @@
-﻿using MySql.Data.MySqlClient;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PizzaShop
 {
     class Drink
     {
-        const string tableName = "drink";
+        const string filename = "drink";
+
         public string Name
         {
             get;
@@ -17,14 +16,7 @@ namespace PizzaShop
         }
 
         // TODO: this can have restictions on the minimum price
-        public decimal Price
-        {
-            get;
-            set;
-        }
-
-        // TODO: this can have restictions on the maximum price
-        public int Quantity
+        public float Price
         {
             get;
             set;
@@ -37,62 +29,75 @@ namespace PizzaShop
         }
 
         // constructors
-        public Drink(string name, decimal price, int quantity)
+        public Drink(string name, float price)
         {
             this.Name = name;
-            this.Quantity = quantity;
             this.Price = price;
-            this.Id = AddDrinkToDb(name, price, quantity);
+            AddDrinkToFile(name, price);
         }
 
-        public Drink(int id, string name, decimal price, int quantity)
+        public Drink(int id, string name, float price)
         {
             this.Name = name;
-            this.Quantity = quantity;
             this.Price = price;
             this.Id = id;
         }
 
-        public static int AddDrinkToDb(string name, decimal price, int quantity)
+        // methods
+
+        /// <summary>
+        /// saves the drink to a file
+        /// </summary>
+        /// <param name="name"> name of the drink</param>
+        /// <param name="price"> price of the drink</param>
+        /// <returns></returns>
+        public static int AddDrinkToFile(string name, float price)
         {
-            MySqlConnection conn = Utils.GetConnection();
-            int id;
-            try
+            using (StreamWriter sw = File.AppendText(filename))
             {
-                string sql = "INSERT INTO " + tableName + "(name, price) VALUES (@name, @price);";
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@name", name);
-                cmd.Parameters.AddWithValue("@price", price);
-                conn.Open();
-                cmd.ExecuteNonQuery();
-                id = Convert.ToInt32(cmd.LastInsertedId);
+                sw.WriteLine(string.Join(", ", Drink.DrinkToCSV(name, price)));
+                sw.Close();
             }
-            catch (Exception)
-            {
-                id = -1;
-            }
-            finally
-            {
-                conn.Close();
-            }
-            return id;
+
+            return 1; // TODO: return the last id
         }
+
         public static Drink GetDrinkById(int id)
         {
-
-        }
-        public static List<Drink> GetAllDrinks()
-        {
-
+            throw new NotImplementedException();
         }
 
         /// <summary>
-        /// Calculate the total cost of the order
+        /// Get all drinks from file
         /// </summary>
-        /// <returns> order price </returns>
-        public decimal CalculatePrice()
+        /// <returns>list of drinks</returns>
+        public static List<Drink> GetAllDrinks()
         {
-            return Price * Quantity;
+            List<Drink> drinks = new List<Drink>();
+            using (StreamReader file = new StreamReader(filename))
+            {
+                string line;
+
+                while ((line = file.ReadLine()) != null)
+                {
+                    List<String> data = line.Split(',').ToList();
+                    Drink d = new Drink(1, data[0], float.Parse(data[1]));
+                    drinks.Add(d);
+                }
+                file.Close();
+            }
+            return drinks;
+        }
+
+        /// <summary>
+        /// formats the drink data to a csv string
+        /// </summary>
+        /// <param name="name"> name of the drink</param>
+        /// <param name="price"> price of the drink</param>
+        /// <returns></returns>
+        public static string DrinkToCSV(string name, float price)
+        {
+            return name + ',' + price;
         }
 
         /// <summary>

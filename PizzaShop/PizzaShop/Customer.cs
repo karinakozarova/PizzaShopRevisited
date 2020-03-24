@@ -1,16 +1,14 @@
-﻿using MySql.Data.MySqlClient;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PizzaShop
 {
     class Customer
     {
         // class constants
-        const string tableName = "customer";
+        const string filename = "customer";
 
         // properties
         public int Id
@@ -37,23 +35,20 @@ namespace PizzaShop
         /// <param name="name"> name of customer </param>
         /// <param name="email"> customer email </param>
         /// <param name="addToDB"> should it be added to the database </param>
-        public Customer(string name, string email, bool addToDB = true)
+        public Customer(string name, string email)
         {
-            if (addToDB)
-            {
-                this.Id = AddCustomerToDb(name, email);
-            }
+            AddCustomerToFile(name, email);
             this.Name = name;
             this.Email = email;
         }
 
         /// <summary>
-        /// Creates a new customer object without adding it to the database
+        /// Creates a new customer object without adding it to the file
         /// </summary>
         /// <param name="id"> the current id in the db </param>
         /// <param name="name"> name of customer </param>
         /// <param name="email"> email of customer </param>
-        public Customer(int id,string name, string email)
+        public Customer(int id, string name, string email)
         {
             this.Id = id;
             this.Name = name;
@@ -63,34 +58,21 @@ namespace PizzaShop
         // methods
 
         /// <summary>
-        /// Adds a customer to the database
+        /// Adds a customer to the file
         /// </summary>
         /// <param name="name"> the name of the customer </param>
         /// <param name="email"> the email of the customer </param>
         /// <returns> the id of the added customer or -1 if it wasnt succesfull </returns>
-        public static int AddCustomerToDb(string name, string email)
+        public static int AddCustomerToFile(string name, string email)
         {
-            MySqlConnection conn = Utils.GetConnection();
-            int id;
-            try
+            using (StreamWriter sw = File.AppendText(filename))
             {
-                string sql = "INSERT INTO " + tableName + "(name, email) VALUES (@name, @email);";
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@name", name);
-                cmd.Parameters.AddWithValue("@email", email);
-                conn.Open();
-                cmd.ExecuteNonQuery();
-                id = Convert.ToInt32(cmd.LastInsertedId);
+                sw.WriteLine(string.Join(", ", Customer.CustomerToCSV(name, email)));
+                sw.Close();
             }
-            catch (Exception)
-            {
-                id = -1;
-            }
-            finally
-            {
-                conn.Close();
-            }
-            return id;
+
+            return 1;
+
         }
 
         /// <summary>
@@ -100,58 +82,38 @@ namespace PizzaShop
         /// <returns> the customer if found, null if not</returns>
         public static Customer GetCustomerById(int id)
         {
-            MySqlConnection conn = Utils.GetConnection();
-
-            Customer customer = null;
-            try
-            {
-                string sql = "SELECT name, email FROM " + tableName + " WHERE id=@id";
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@id", id);
-                conn.Open();
-                MySqlDataReader row = cmd.ExecuteReader();
-
-                while (row.Read())
-                {
-                    customer = new Customer(id, row[0].ToString(), row[1].ToString());
-                }
-            }
-            catch (Exception){}
-            finally
-            {
-                conn.Close();
-            }
-            return customer;
-
+            throw new NotImplementedException();
         }
 
         /// <summary>
-        /// get all the customers from the database
+        /// get all the customers from the file
         /// </summary>
         /// <returns> a list with all the customers </returns>
         public static List<Customer> GetAllCustomers()
         {
-            MySqlConnection conn = Utils.GetConnection();
-
             List<Customer> customers = new List<Customer>();
-            try
+            using (StreamReader file = new StreamReader(filename))
             {
-                string sql = "SELECT id, name, email FROM " + tableName;
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
-                conn.Open();
-                MySqlDataReader row = cmd.ExecuteReader();
+                string line;
 
-                while (row.Read())
+                while ((line = file.ReadLine()) != null)
                 {
-                    customers.Add(new Customer(Convert.ToInt32(row[0]), row[1].ToString(), row[2].ToString()));
+                    List<String> data = line.Split(',').ToList();
+                    customers.Add(new Customer(1, data[0], data[1]));
                 }
-            }
-            catch (Exception){}
-            finally
-            {
-                conn.Close();
+                file.Close();
             }
             return customers;
+        }
+
+        private string CustomerToCSV()
+        {
+            return this.Name + ',' + this.Email;
+        }
+
+        private static string CustomerToCSV(string name, string email)
+        {
+            return name + ',' + email;
         }
 
         /// <summary>
