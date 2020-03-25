@@ -53,14 +53,6 @@ namespace PizzaShop
             return 1; // TODO: return the last id
         }
 
-        public Order(int id,Customer Customer, List<OrderedPizza> pizzas = null, List<OrderedDrink> drinks = null)
-        {
-            this.Customer = Customer;
-            this.pizzas = pizzas;
-            this.drinks = drinks;
-            this.IsCancelled = false;
-        }
-
         // methods
         /// <summary>
         /// Cancels the current order
@@ -93,16 +85,6 @@ namespace PizzaShop
             throw new NotImplementedException();
         }
 
-        public List<Order> GetAllOrders()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Order> GetOrders(String filter)
-        {
-            throw new NotImplementedException();
-        }
-
         internal static string OrderToCSV(Order o)
         {
             return "ORDER" + Environment.NewLine + o.IsCancelled + "," + o.OrderedAt + "," + o.Customer + Environment.NewLine + o.PizzasToCSV() + o.DrinksToCSV() + Environment.NewLine + "ENDORDER";
@@ -118,8 +100,6 @@ namespace PizzaShop
             Order o = new Order(customer, pizzas, drinks, true);
             return OrderToCSV(o);
         }
-
-        
 
         public string DrinksToCSV()
         {

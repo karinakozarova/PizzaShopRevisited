@@ -49,23 +49,6 @@ namespace PizzaShop
             return orders;
         }
 
-        //public Shop(string name, List<Order> orders)
-        //{
-        //    Utils.ClearFile(name);
-        //    orders = new List<Order>();
-        //    this.Name = name;
-        //    foreach (Order o in orders) this.orders.Add(o);
-        //    AddShopToFile(name, orders);
-        //}
-
-        //public Shop(int id, string name, List<Order> orders)
-        //{
-        //    orders = new List<Order>();
-        //    this.Name = name;
-        //    foreach (Order o in orders) this.orders.Add(o);
-        //    AddShopToFile(name, orders);
-        //}
-
         /// <summary>
         /// Save the shop
         /// </summary>
@@ -136,7 +119,12 @@ namespace PizzaShop
         /// <returns></returns>
         public float GetRevenueForDay(DateTime day)
         {
-            throw new NotImplementedException();
+            float total = 0.0f;
+            foreach (Order o in orders)
+            {
+                if(o.OrderedAt.Date == day.Date) total += o.CalculateTotalCost();
+            }
+            return total;
         }
 
         /// <summary>

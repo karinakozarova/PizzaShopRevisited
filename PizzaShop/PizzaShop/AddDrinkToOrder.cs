@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PizzaShop
@@ -15,6 +9,7 @@ namespace PizzaShop
         public AddDrinkToOrder()
         {
             InitializeComponent();
+
             drinksTbx.Items.Clear();
             List<Drink> drinks = Drink.GetAllDrinks();
             foreach (Drink d in drinks)
@@ -25,26 +20,33 @@ namespace PizzaShop
 
         private void addPizzaToOrderBttn_Click(object sender, EventArgs e)
         {
-            if(QuantityInput.Value == 0)
+            if (QuantityInput.Value == 0)
             {
                 MessageBox.Show("Enter quantity!");
                 return;
             }
-            if(drinksTbx.SelectedIndex == -1)
+            if (drinksTbx.SelectedIndex == -1)
             {
                 MessageBox.Show("Select a drink!");
                 return;
             }
-            int quantity = Convert.ToInt32(QuantityInput.Value);
-            Drink drink = (Drink)drinksTbx.SelectedItem;
-            new OrderedDrink(drink, quantity);
-            foreach (Form form in Application.OpenForms)
+            try
             {
-                if (form is Form1)
+                int quantity = Convert.ToInt32(QuantityInput.Value);
+                Drink drink = (Drink)drinksTbx.SelectedItem;
+                new OrderedDrink(drink, quantity);
+                foreach (Form form in Application.OpenForms)
                 {
-                    Form1 currentform = (Form1)form;
-                    currentform.PopulateAll();
+                    if (form is Form1)
+                    {
+                        Form1 currentform = (Form1)form;
+                        currentform.PopulateAll();
+                    }
                 }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Couldn't parse the information.");
             }
             this.Close();
         }

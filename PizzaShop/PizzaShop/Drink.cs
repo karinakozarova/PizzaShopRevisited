@@ -72,11 +72,6 @@ namespace PizzaShop
             return 1; // TODO: return the last id
         }
 
-        public static Drink GetDrinkById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         /// <summary>
         /// Get all drinks from file
         /// </summary>

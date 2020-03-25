@@ -12,11 +12,17 @@ namespace PizzaShop
             InitializeComponent();
             s = Shop.OrdersFromFile("My Shop");
             s.Name = "My Shop";
+            shopNameLbl.Text = s.Name;
             PopulateAll();
             revenueDateTImePicker.Value = DateTime.Today;
-            totalRevenueLbl.Text = s.GetRevenue().ToString();
         }
-        
+
+        private void PopulateRevenues()
+        {
+            totalRevenueLbl.Text = s.GetRevenue().ToString();
+            dailyRevenueLbl.Text = s.GetDailyRevenue().ToString();
+        }
+
         public void PopulateAll()
         {
             RefreshCustomers();
@@ -25,6 +31,7 @@ namespace PizzaShop
             ReloadDrinks();
             ReloadPizzas();
             PopulateOrders();
+            PopulateRevenues();
         }
 
         private void PopulateOrders()
@@ -57,7 +64,7 @@ namespace PizzaShop
             foreach (Drink d in drinks)
             {
                 drinksLbx.Items.Add(d);
-           
+
             }
         }
         private void RefreshPizzas()
@@ -135,7 +142,8 @@ namespace PizzaShop
 
         private void revenueDateTImePicker_ValueChanged(object sender, EventArgs e)
         {
-
+            float result = s.GetRevenueForDay(revenueDateTImePicker.Value);
+            dateRevenueLbl.Text = result.ToString();
         }
 
         private void addPizzaToOrderBttn_Click(object sender, EventArgs e)
@@ -201,26 +209,27 @@ namespace PizzaShop
                 return;
             }
 
-            List<OrderedPizza> pizzas = new List<OrderedPizza>();
-            List<OrderedDrink> drinks = new List<OrderedDrink>();
-            foreach (OrderedPizza p in orderedPizzasLbx.Items)
+            try
             {
-                pizzas.Add(p);
+                List<OrderedPizza> pizzas = new List<OrderedPizza>();
+                List<OrderedDrink> drinks = new List<OrderedDrink>();
+                foreach (OrderedPizza p in orderedPizzasLbx.Items)
+                {
+                    pizzas.Add(p);
+                }
+                foreach (OrderedDrink d in orderedDrinksLbx.Items)
+                {
+                    drinks.Add(d);
+                }
+                Customer customer = (Customer)customerOrderTbx.SelectedItem;
+                s.AddOrder(new Order(customer, pizzas, drinks, true));
+                ClearOrderFiles();
+                MessageBox.Show("Order was successfully added");
             }
-            foreach (OrderedDrink d in orderedDrinksLbx.Items)
+            catch (Exception)
             {
-                drinks.Add(d);
+                MessageBox.Show("Couldn't parse the information.");
             }
-            Customer customer = (Customer)customerOrderTbx.SelectedItem;
-            s.AddOrder(new Order(customer, pizzas, drinks, true));
-            ClearOrderFiles();
-            MessageBox.Show("Order was successfully added");
-        }
-
-        private void reloadBttn_Click(object sender, EventArgs e)
-        {
-            ReloadDrinks();
-            ReloadPizzas();
         }
 
         private void cancelOrderBttn_Click(object sender, EventArgs e)
@@ -230,13 +239,21 @@ namespace PizzaShop
                 MessageBox.Show("Please select the order to Cancel");
                 return;
             }
-            Order o = (Order)allOrdersLbx.SelectedItem;
-            o.Cancel();
+
+            try
+            {
+                Order o = (Order)allOrdersLbx.SelectedItem;
+                o.Cancel(s.Name);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Couldn't parse the information.");
+            }
         }
 
         private void editCustomerBtn_Click(object sender, EventArgs e)
         {
-            if(customersLbx.SelectedIndex == -1)
+            if (customersLbx.SelectedIndex == -1)
             {
                 MessageBox.Show("Please select the customer to Edit");
                 return;
@@ -253,16 +270,27 @@ namespace PizzaShop
                 MessageBox.Show("Please select the customer to Edit");
                 return;
             }
-
-            Customer customer = (Customer)customersLbx.SelectedItem;
-
-            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
-            DialogResult result = MessageBox.Show("Are you sure you want to delete this customer?", "Delete Customer", buttons);
-            if (result == DialogResult.Yes)
+            try
             {
-                customer.Delete();
+                Customer customer = (Customer)customersLbx.SelectedItem;
+
+                MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                DialogResult result = MessageBox.Show("Are you sure you want to delete this customer?", "Delete Customer", buttons);
+                if (result == DialogResult.Yes)
+                {
+                    customer.Delete();
+                }
+                PopulateAll();
             }
-            PopulateAll();
+            catch (Exception)
+            {
+                MessageBox.Show("Couldn't parse the information.");
+            }
+        }
+
+        private void viewReceiptBttn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

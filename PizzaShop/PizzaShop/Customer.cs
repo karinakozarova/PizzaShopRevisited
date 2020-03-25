@@ -46,17 +46,6 @@ namespace PizzaShop
         /// </summary>
         /// <param name="name"> name of customer </param>
         /// <param name="addToDB"> should it be added to the database </param>
-        public Customer(string name)
-        {
-            AddCustomerToFile(name, "");
-            this.Name = name;
-            this.Email = "";
-        }
-        /// <summary>
-        /// Creates a new customer and adds it to the database
-        /// </summary>
-        /// <param name="name"> name of customer </param>
-        /// <param name="addToDB"> should it be added to the database </param>
         public Customer(int id, string name)
         {
             this.Id = id;
@@ -184,6 +173,5 @@ namespace PizzaShop
         {
             return this.Name;
         }
-
     }
 }

@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PizzaShop
@@ -35,30 +29,37 @@ namespace PizzaShop
                 MessageBox.Show("Select a pizza!");
                 return;
             }
-            
+
             bool isThick = false;
             bool isFilled = false;
 
             if (isThickCheckBox.Checked)
             {
                 isThick = true;
-            }if (isFilledChbx.Checked)
+            }
+            if (isFilledChbx.Checked)
             {
                 isFilled = true;
             }
-
-            int quantity = Convert.ToInt32(QuantityInput.Value);
-            Pizza pizza = (Pizza) pizzaTbx.SelectedItem;
-            new OrderedPizza(pizza, quantity, isFilled, isThick);
-            foreach (Form form in Application.OpenForms)
+            try
             {
-                if (form is Form1)
+                int quantity = Convert.ToInt32(QuantityInput.Value);
+                Pizza pizza = (Pizza)pizzaTbx.SelectedItem;
+                new OrderedPizza(pizza, quantity, isFilled, isThick);
+                foreach (Form form in Application.OpenForms)
                 {
-                    Form1 currentform = (Form1)form;
-                    currentform.PopulateAll();
+                    if (form is Form1)
+                    {
+                        Form1 currentform = (Form1)form;
+                        currentform.PopulateAll();
+                    }
                 }
             }
+            catch (Exception)
+            {
+                MessageBox.Show("Couldn't parse the information.");
+            }
             this.Close();
-        } 
+        }
     }
 }

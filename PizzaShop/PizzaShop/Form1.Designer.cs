@@ -30,13 +30,16 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.shopNameLbl = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.dateRevenueLbl = new System.Windows.Forms.Label();
             this.dailyRevenueLbl = new System.Windows.Forms.Label();
             this.totalRevenueLbl = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.revenueDateTime = new System.Windows.Forms.Label();
             this.revenueDateTImePicker = new System.Windows.Forms.DateTimePicker();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.reloadBttn = new System.Windows.Forms.Button();
             this.clearBttn = new System.Windows.Forms.Button();
             this.customerOrderTbx = new System.Windows.Forms.ComboBox();
             this.saveOrderBttn = new System.Windows.Forms.Button();
@@ -106,6 +109,10 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.shopNameLbl);
+            this.tabPage1.Controls.Add(this.label11);
+            this.tabPage1.Controls.Add(this.label10);
+            this.tabPage1.Controls.Add(this.dateRevenueLbl);
             this.tabPage1.Controls.Add(this.dailyRevenueLbl);
             this.tabPage1.Controls.Add(this.totalRevenueLbl);
             this.tabPage1.Controls.Add(this.label6);
@@ -119,11 +126,51 @@
             this.tabPage1.Text = "Shop";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // shopNameLbl
+            // 
+            this.shopNameLbl.AutoSize = true;
+            this.shopNameLbl.Font = new System.Drawing.Font("Montserrat", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.shopNameLbl.Location = new System.Drawing.Point(592, 243);
+            this.shopNameLbl.Name = "shopNameLbl";
+            this.shopNameLbl.Size = new System.Drawing.Size(476, 99);
+            this.shopNameLbl.TabIndex = 8;
+            this.shopNameLbl.Text = "Welcome to";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Montserrat", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(523, 111);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(636, 132);
+            this.label11.TabIndex = 7;
+            this.label11.Text = "Welcome to";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Montserrat", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(53, 353);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(277, 50);
+            this.label10.TabIndex = 6;
+            this.label10.Text = "Daily revenue:";
+            // 
+            // dateRevenueLbl
+            // 
+            this.dateRevenueLbl.AutoSize = true;
+            this.dateRevenueLbl.Font = new System.Drawing.Font("Montserrat", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateRevenueLbl.Location = new System.Drawing.Point(362, 177);
+            this.dateRevenueLbl.Name = "dateRevenueLbl";
+            this.dateRevenueLbl.Size = new System.Drawing.Size(77, 50);
+            this.dateRevenueLbl.TabIndex = 5;
+            this.dateRevenueLbl.Text = "15$";
+            // 
             // dailyRevenueLbl
             // 
             this.dailyRevenueLbl.AutoSize = true;
             this.dailyRevenueLbl.Font = new System.Drawing.Font("Montserrat", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dailyRevenueLbl.Location = new System.Drawing.Point(362, 299);
+            this.dailyRevenueLbl.Location = new System.Drawing.Point(362, 353);
             this.dailyRevenueLbl.Name = "dailyRevenueLbl";
             this.dailyRevenueLbl.Size = new System.Drawing.Size(77, 50);
             this.dailyRevenueLbl.TabIndex = 4;
@@ -153,7 +200,7 @@
             // 
             this.revenueDateTime.AutoSize = true;
             this.revenueDateTime.Font = new System.Drawing.Font("Montserrat", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.revenueDateTime.Location = new System.Drawing.Point(53, 299);
+            this.revenueDateTime.Location = new System.Drawing.Point(46, 177);
             this.revenueDateTime.Name = "revenueDateTime";
             this.revenueDateTime.Size = new System.Drawing.Size(310, 50);
             this.revenueDateTime.TabIndex = 1;
@@ -162,7 +209,7 @@
             // revenueDateTImePicker
             // 
             this.revenueDateTImePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.revenueDateTImePicker.Location = new System.Drawing.Point(62, 253);
+            this.revenueDateTImePicker.Location = new System.Drawing.Point(62, 247);
             this.revenueDateTImePicker.Name = "revenueDateTImePicker";
             this.revenueDateTImePicker.Size = new System.Drawing.Size(396, 32);
             this.revenueDateTImePicker.TabIndex = 0;
@@ -170,7 +217,6 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.reloadBttn);
             this.tabPage2.Controls.Add(this.clearBttn);
             this.tabPage2.Controls.Add(this.customerOrderTbx);
             this.tabPage2.Controls.Add(this.saveOrderBttn);
@@ -186,17 +232,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Orders";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // reloadBttn
-            // 
-            this.reloadBttn.Font = new System.Drawing.Font("Montserrat", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.reloadBttn.Location = new System.Drawing.Point(484, 30);
-            this.reloadBttn.Name = "reloadBttn";
-            this.reloadBttn.Size = new System.Drawing.Size(160, 53);
-            this.reloadBttn.TabIndex = 22;
-            this.reloadBttn.Text = "Reload";
-            this.reloadBttn.UseVisualStyleBackColor = true;
-            this.reloadBttn.Click += new System.EventHandler(this.reloadBttn_Click);
             // 
             // clearBttn
             // 
@@ -301,6 +336,7 @@
             this.viewReceiptBttn.TabIndex = 22;
             this.viewReceiptBttn.Text = "View receipt";
             this.viewReceiptBttn.UseVisualStyleBackColor = true;
+            this.viewReceiptBttn.Click += new System.EventHandler(this.viewReceiptBttn_Click);
             // 
             // removeOrderBttn
             // 
@@ -679,7 +715,6 @@
         private System.Windows.Forms.Button saveOrderBttn;
         private System.Windows.Forms.ComboBox customerOrderTbx;
         private System.Windows.Forms.Button clearBttn;
-        private System.Windows.Forms.Button reloadBttn;
         private System.Windows.Forms.TabPage tabPage6;
         private System.Windows.Forms.ListBox allOrdersLbx;
         private System.Windows.Forms.Button removeOrderBttn;
@@ -687,6 +722,10 @@
         private System.Windows.Forms.Button viewReceiptBttn;
         private System.Windows.Forms.Button editCustomerBtn;
         private System.Windows.Forms.Button deleteCustomerBttn;
+        private System.Windows.Forms.Label dateRevenueLbl;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label shopNameLbl;
+        private System.Windows.Forms.Label label11;
     }
 }
 
