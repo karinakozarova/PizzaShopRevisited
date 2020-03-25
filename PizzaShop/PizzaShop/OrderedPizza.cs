@@ -42,6 +42,13 @@ namespace PizzaShop
         }
 
         // constructors
+        /// <summary>
+        /// Create a new ordered pizza and save it to file
+        /// </summary>
+        /// <param name="pizza"> name of the pizza </param>
+        /// <param name="quantity"> quantity of the pizza</param>
+        /// <param name="isFilled"> is the pizza filled </param>
+        /// <param name="isThick"> is the pizza thick</param>
         public OrderedPizza(Pizza pizza, int quantity, bool isFilled, bool isThick)
         {
             this.Pizza = pizza;
@@ -50,7 +57,14 @@ namespace PizzaShop
             this.IsThick = isThick;
             AddToFile(pizza, quantity, IsFilled, isThick);
         }
-
+        /// <summary>
+        /// creates an ordered pizza object without adding it to the file
+        /// </summary>
+        /// <param name="id"> id of the pizza (TODO)</param>
+        /// <param name="pizza"> name of the pizza </param>
+        /// <param name="quantity"> quantity of the pizza</param>
+        /// <param name="isFilled"> is the pizza filled </param>
+        /// <param name="isThick"> is the pizza thick</param>
         public OrderedPizza(int id, Pizza pizza, int quantity, bool isFilled, bool isThick)
         {
             this.Pizza = pizza;
@@ -61,6 +75,14 @@ namespace PizzaShop
         }
 
         // methods
+        /// <summary>
+        /// save pizza to the file
+        /// </summary>
+        /// <param name="pizza"> pizza object </param>
+        /// <param name="quantity"> quantity of the pizza</param>
+        /// <param name="isFilled"> is the pizza filled </param>
+        /// <param name="isThick"> is the pizza thick</param>
+        /// <returns></returns>
         public int AddToFile(Pizza pizza, int quantity, bool isFilled, bool isThick)
         {
             using (StreamWriter sw = File.AppendText(filename))
@@ -71,21 +93,31 @@ namespace PizzaShop
             return 1;
         }
 
+        /// <summary>
+        /// convert the data to a csv
+        /// </summary>
+        /// <param name="pizza"> pizza object </param>
+        /// <param name="quantity"> quantity of the pizza</param>
+        /// <param name="isFilled"> is the pizza filled </param>
+        /// <param name="isThick"> is the pizza thick</param>
+        /// <returns></returns>
         public static string PizzaOrderToCSV(Pizza pizza, int quantity, bool isFilled, bool IsThick)
         {
             return Pizza.PizzaToCSV(pizza.PizzaBaseName, pizza.ThicknessAdditionPrice, pizza.FilledAdditionPrice) + ',' + quantity + ',' + isFilled + ',' + IsThick;
         }
 
+        /// <summary>
+        /// deletes the content of the file
+        /// </summary>
         public static void ClearFile()
         {
-            System.IO.File.WriteAllText(filename, string.Empty);
+            Utils.ClearFile(filename);
         }
 
-        public OrderedPizza GetOrderedPizzaById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
+        /// <summary>
+        /// get a list of all the ordered pizzas
+        /// </summary>
+        /// <returns> List<OrderedPizza> </returns>
         public static List<OrderedPizza> GetAllOrderedPizzas()
         {
             List<OrderedPizza> pizzas = new List<OrderedPizza>();
@@ -105,12 +137,19 @@ namespace PizzaShop
             return pizzas;
             throw new NotImplementedException();
         }
-
+        /// <summary>
+        /// stringify the pizza
+        /// </summary>
+        /// <returns> string </returns>
         public override string ToString()
         {
-            return Pizza.PizzaBaseName + " x " + this.Quantity;
+            return Pizza.PizzaBaseName + " x " + this.Quantity + " = " + CalculatePrice();
         }
 
+        /// <summary>
+        /// calculate the total cost of the order
+        /// </summary>
+        /// <returns></returns>
         public float CalculatePrice()
         {
             float price = Pizza.BasePrice;

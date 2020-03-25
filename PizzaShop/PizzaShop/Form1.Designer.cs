@@ -36,6 +36,8 @@
             this.revenueDateTime = new System.Windows.Forms.Label();
             this.revenueDateTImePicker = new System.Windows.Forms.DateTimePicker();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.reloadBttn = new System.Windows.Forms.Button();
+            this.clearBttn = new System.Windows.Forms.Button();
             this.customerOrderTbx = new System.Windows.Forms.ComboBox();
             this.saveOrderBttn = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
@@ -43,7 +45,14 @@
             this.addPizzaToOrderBttn = new System.Windows.Forms.Button();
             this.orderedDrinksLbx = new System.Windows.Forms.ListBox();
             this.orderedPizzasLbx = new System.Windows.Forms.ListBox();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.viewReceiptBttn = new System.Windows.Forms.Button();
+            this.removeOrderBttn = new System.Windows.Forms.Button();
+            this.cancelOrderBttn = new System.Windows.Forms.Button();
+            this.allOrdersLbx = new System.Windows.Forms.ListBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.deleteCustomerBttn = new System.Windows.Forms.Button();
+            this.editCustomerBtn = new System.Windows.Forms.Button();
             this.customersLbx = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -68,25 +77,16 @@
             this.pizzaThickPriceInput = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
             this.pizzaNameTbx = new System.Windows.Forms.TextBox();
-            this.clearBttn = new System.Windows.Forms.Button();
-            this.reloadBttn = new System.Windows.Forms.Button();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.allOrdersLbx = new System.Windows.Forms.ListBox();
-            this.cancelOrderBttn = new System.Windows.Forms.Button();
-            this.removeOrderBttn = new System.Windows.Forms.Button();
-            this.viewReceiptBttn = new System.Windows.Forms.Button();
-            this.editCustomerBtn = new System.Windows.Forms.Button();
-            this.deleteCustomerBttn = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage6.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.drinkPriceBttn)).BeginInit();
             this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.filledPizzaPriceInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pizzaThickPriceInput)).BeginInit();
-            this.tabPage6.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -182,10 +182,32 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 42);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1181, 507);
+            this.tabPage2.Size = new System.Drawing.Size(1181, 524);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Orders";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // reloadBttn
+            // 
+            this.reloadBttn.Font = new System.Drawing.Font("Montserrat", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reloadBttn.Location = new System.Drawing.Point(484, 30);
+            this.reloadBttn.Name = "reloadBttn";
+            this.reloadBttn.Size = new System.Drawing.Size(160, 53);
+            this.reloadBttn.TabIndex = 22;
+            this.reloadBttn.Text = "Reload";
+            this.reloadBttn.UseVisualStyleBackColor = true;
+            this.reloadBttn.Click += new System.EventHandler(this.reloadBttn_Click);
+            // 
+            // clearBttn
+            // 
+            this.clearBttn.Font = new System.Drawing.Font("Montserrat", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clearBttn.Location = new System.Drawing.Point(32, 389);
+            this.clearBttn.Name = "clearBttn";
+            this.clearBttn.Size = new System.Drawing.Size(625, 63);
+            this.clearBttn.TabIndex = 21;
+            this.clearBttn.Text = "Clear";
+            this.clearBttn.UseVisualStyleBackColor = true;
+            this.clearBttn.Click += new System.EventHandler(this.clearBttn_Click);
             // 
             // customerOrderTbx
             // 
@@ -257,6 +279,60 @@
             this.orderedPizzasLbx.Size = new System.Drawing.Size(467, 199);
             this.orderedPizzasLbx.TabIndex = 12;
             // 
+            // tabPage6
+            // 
+            this.tabPage6.Controls.Add(this.viewReceiptBttn);
+            this.tabPage6.Controls.Add(this.removeOrderBttn);
+            this.tabPage6.Controls.Add(this.cancelOrderBttn);
+            this.tabPage6.Controls.Add(this.allOrdersLbx);
+            this.tabPage6.Location = new System.Drawing.Point(4, 42);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Size = new System.Drawing.Size(1181, 524);
+            this.tabPage6.TabIndex = 5;
+            this.tabPage6.Text = "Order actions";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // viewReceiptBttn
+            // 
+            this.viewReceiptBttn.Font = new System.Drawing.Font("Montserrat", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.viewReceiptBttn.Location = new System.Drawing.Point(767, 225);
+            this.viewReceiptBttn.Name = "viewReceiptBttn";
+            this.viewReceiptBttn.Size = new System.Drawing.Size(370, 63);
+            this.viewReceiptBttn.TabIndex = 22;
+            this.viewReceiptBttn.Text = "View receipt";
+            this.viewReceiptBttn.UseVisualStyleBackColor = true;
+            // 
+            // removeOrderBttn
+            // 
+            this.removeOrderBttn.Font = new System.Drawing.Font("Montserrat", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.removeOrderBttn.Location = new System.Drawing.Point(767, 125);
+            this.removeOrderBttn.Name = "removeOrderBttn";
+            this.removeOrderBttn.Size = new System.Drawing.Size(370, 63);
+            this.removeOrderBttn.TabIndex = 21;
+            this.removeOrderBttn.Text = "Delete order";
+            this.removeOrderBttn.UseVisualStyleBackColor = true;
+            // 
+            // cancelOrderBttn
+            // 
+            this.cancelOrderBttn.Font = new System.Drawing.Font("Montserrat", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cancelOrderBttn.Location = new System.Drawing.Point(767, 32);
+            this.cancelOrderBttn.Name = "cancelOrderBttn";
+            this.cancelOrderBttn.Size = new System.Drawing.Size(370, 63);
+            this.cancelOrderBttn.TabIndex = 20;
+            this.cancelOrderBttn.Text = "Cancel order";
+            this.cancelOrderBttn.UseVisualStyleBackColor = true;
+            this.cancelOrderBttn.Click += new System.EventHandler(this.cancelOrderBttn_Click);
+            // 
+            // allOrdersLbx
+            // 
+            this.allOrdersLbx.Font = new System.Drawing.Font("Montserrat", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.allOrdersLbx.HorizontalScrollbar = true;
+            this.allOrdersLbx.ItemHeight = 39;
+            this.allOrdersLbx.Location = new System.Drawing.Point(21, 32);
+            this.allOrdersLbx.Name = "allOrdersLbx";
+            this.allOrdersLbx.Size = new System.Drawing.Size(706, 472);
+            this.allOrdersLbx.TabIndex = 13;
+            // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.deleteCustomerBttn);
@@ -275,6 +351,26 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Customers";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // deleteCustomerBttn
+            // 
+            this.deleteCustomerBttn.Location = new System.Drawing.Point(524, 411);
+            this.deleteCustomerBttn.Name = "deleteCustomerBttn";
+            this.deleteCustomerBttn.Size = new System.Drawing.Size(224, 93);
+            this.deleteCustomerBttn.TabIndex = 10;
+            this.deleteCustomerBttn.Text = "Delete selected customer";
+            this.deleteCustomerBttn.UseVisualStyleBackColor = true;
+            this.deleteCustomerBttn.Click += new System.EventHandler(this.deleteCustomerBttn_Click);
+            // 
+            // editCustomerBtn
+            // 
+            this.editCustomerBtn.Location = new System.Drawing.Point(768, 411);
+            this.editCustomerBtn.Name = "editCustomerBtn";
+            this.editCustomerBtn.Size = new System.Drawing.Size(374, 93);
+            this.editCustomerBtn.TabIndex = 9;
+            this.editCustomerBtn.Text = "Edit selected customer";
+            this.editCustomerBtn.UseVisualStyleBackColor = true;
+            this.editCustomerBtn.Click += new System.EventHandler(this.editCustomerBtn_Click);
             // 
             // customersLbx
             // 
@@ -307,7 +403,7 @@
             // 
             // importCustomersBttn
             // 
-            this.importCustomersBttn.Location = new System.Drawing.Point(47, 411);
+            this.importCustomersBttn.Location = new System.Drawing.Point(47, 439);
             this.importCustomersBttn.Name = "importCustomersBttn";
             this.importCustomersBttn.Size = new System.Drawing.Size(300, 55);
             this.importCustomersBttn.TabIndex = 4;
@@ -316,7 +412,7 @@
             // 
             // exportCustomersBttn
             // 
-            this.exportCustomersBttn.Location = new System.Drawing.Point(47, 350);
+            this.exportCustomersBttn.Location = new System.Drawing.Point(47, 378);
             this.exportCustomersBttn.Name = "exportCustomersBttn";
             this.exportCustomersBttn.Size = new System.Drawing.Size(324, 55);
             this.exportCustomersBttn.TabIndex = 3;
@@ -359,7 +455,7 @@
             this.tabPage4.Controls.Add(this.drinkNameTbx);
             this.tabPage4.Location = new System.Drawing.Point(4, 42);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1181, 507);
+            this.tabPage4.Size = new System.Drawing.Size(1181, 524);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Drinks";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -374,7 +470,7 @@
             // 
             // addDrinkBttn
             // 
-            this.addDrinkBttn.Location = new System.Drawing.Point(57, 202);
+            this.addDrinkBttn.Location = new System.Drawing.Point(57, 216);
             this.addDrinkBttn.Name = "addDrinkBttn";
             this.addDrinkBttn.Size = new System.Drawing.Size(382, 55);
             this.addDrinkBttn.TabIndex = 10;
@@ -432,7 +528,7 @@
             this.tabPage5.Controls.Add(this.pizzaNameTbx);
             this.tabPage5.Location = new System.Drawing.Point(4, 42);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(1181, 507);
+            this.tabPage5.Size = new System.Drawing.Size(1181, 524);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Pizzas";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -513,101 +609,6 @@
             this.pizzaNameTbx.Size = new System.Drawing.Size(389, 47);
             this.pizzaNameTbx.TabIndex = 8;
             // 
-            // clearBttn
-            // 
-            this.clearBttn.Font = new System.Drawing.Font("Montserrat", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clearBttn.Location = new System.Drawing.Point(32, 389);
-            this.clearBttn.Name = "clearBttn";
-            this.clearBttn.Size = new System.Drawing.Size(625, 63);
-            this.clearBttn.TabIndex = 21;
-            this.clearBttn.Text = "Clear";
-            this.clearBttn.UseVisualStyleBackColor = true;
-            this.clearBttn.Click += new System.EventHandler(this.clearBttn_Click);
-            // 
-            // reloadBttn
-            // 
-            this.reloadBttn.Font = new System.Drawing.Font("Montserrat", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.reloadBttn.Location = new System.Drawing.Point(484, 30);
-            this.reloadBttn.Name = "reloadBttn";
-            this.reloadBttn.Size = new System.Drawing.Size(160, 53);
-            this.reloadBttn.TabIndex = 22;
-            this.reloadBttn.Text = "Reload";
-            this.reloadBttn.UseVisualStyleBackColor = true;
-            this.reloadBttn.Click += new System.EventHandler(this.reloadBttn_Click);
-            // 
-            // tabPage6
-            // 
-            this.tabPage6.Controls.Add(this.viewReceiptBttn);
-            this.tabPage6.Controls.Add(this.removeOrderBttn);
-            this.tabPage6.Controls.Add(this.cancelOrderBttn);
-            this.tabPage6.Controls.Add(this.allOrdersLbx);
-            this.tabPage6.Location = new System.Drawing.Point(4, 42);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(1181, 507);
-            this.tabPage6.TabIndex = 5;
-            this.tabPage6.Text = "Order actions";
-            this.tabPage6.UseVisualStyleBackColor = true;
-            // 
-            // allOrdersLbx
-            // 
-            this.allOrdersLbx.Font = new System.Drawing.Font("Montserrat", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.allOrdersLbx.ItemHeight = 39;
-            this.allOrdersLbx.Location = new System.Drawing.Point(21, 32);
-            this.allOrdersLbx.Name = "allOrdersLbx";
-            this.allOrdersLbx.Size = new System.Drawing.Size(706, 472);
-            this.allOrdersLbx.TabIndex = 13;
-            // 
-            // cancelOrderBttn
-            // 
-            this.cancelOrderBttn.Font = new System.Drawing.Font("Montserrat", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cancelOrderBttn.Location = new System.Drawing.Point(767, 32);
-            this.cancelOrderBttn.Name = "cancelOrderBttn";
-            this.cancelOrderBttn.Size = new System.Drawing.Size(370, 63);
-            this.cancelOrderBttn.TabIndex = 20;
-            this.cancelOrderBttn.Text = "Cancel order";
-            this.cancelOrderBttn.UseVisualStyleBackColor = true;
-            this.cancelOrderBttn.Click += new System.EventHandler(this.cancelOrderBttn_Click);
-            // 
-            // removeOrderBttn
-            // 
-            this.removeOrderBttn.Font = new System.Drawing.Font("Montserrat", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.removeOrderBttn.Location = new System.Drawing.Point(767, 125);
-            this.removeOrderBttn.Name = "removeOrderBttn";
-            this.removeOrderBttn.Size = new System.Drawing.Size(370, 63);
-            this.removeOrderBttn.TabIndex = 21;
-            this.removeOrderBttn.Text = "Delete order";
-            this.removeOrderBttn.UseVisualStyleBackColor = true;
-            // 
-            // viewReceiptBttn
-            // 
-            this.viewReceiptBttn.Font = new System.Drawing.Font("Montserrat", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.viewReceiptBttn.Location = new System.Drawing.Point(767, 225);
-            this.viewReceiptBttn.Name = "viewReceiptBttn";
-            this.viewReceiptBttn.Size = new System.Drawing.Size(370, 63);
-            this.viewReceiptBttn.TabIndex = 22;
-            this.viewReceiptBttn.Text = "View receipt";
-            this.viewReceiptBttn.UseVisualStyleBackColor = true;
-            // 
-            // editCustomerBtn
-            // 
-            this.editCustomerBtn.Location = new System.Drawing.Point(768, 411);
-            this.editCustomerBtn.Name = "editCustomerBtn";
-            this.editCustomerBtn.Size = new System.Drawing.Size(374, 93);
-            this.editCustomerBtn.TabIndex = 9;
-            this.editCustomerBtn.Text = "Edit selected customer";
-            this.editCustomerBtn.UseVisualStyleBackColor = true;
-            this.editCustomerBtn.Click += new System.EventHandler(this.editCustomerBtn_Click);
-            // 
-            // deleteCustomerBttn
-            // 
-            this.deleteCustomerBttn.Location = new System.Drawing.Point(524, 411);
-            this.deleteCustomerBttn.Name = "deleteCustomerBttn";
-            this.deleteCustomerBttn.Size = new System.Drawing.Size(224, 93);
-            this.deleteCustomerBttn.TabIndex = 10;
-            this.deleteCustomerBttn.Text = "Delete selected customer";
-            this.deleteCustomerBttn.UseVisualStyleBackColor = true;
-            this.deleteCustomerBttn.Click += new System.EventHandler(this.deleteCustomerBttn_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -621,6 +622,7 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.tabPage6.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.tabPage4.ResumeLayout(false);
@@ -630,7 +632,6 @@
             this.tabPage5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.filledPizzaPriceInput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pizzaThickPriceInput)).EndInit();
-            this.tabPage6.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

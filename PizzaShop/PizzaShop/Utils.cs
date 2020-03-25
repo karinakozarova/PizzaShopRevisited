@@ -4,11 +4,20 @@ namespace PizzaShop
 {
     class Utils
     {
+        /// <summary>
+        /// get today
+        /// </summary>
+        /// <returns></returns>
         public static DateTime GetDateTime()
         {
             return DateTime.Now;
         }
 
+        /// <summary>
+        ///Validation for email addresses
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
         public static bool IsValidEmail(string email)
         {
             try
@@ -22,9 +31,13 @@ namespace PizzaShop
             }
         }
 
+        /// <summary>
+        /// Clear the content of a file
+        /// </summary>
+        /// <param name="filename"> name of the file</param>
         public static void ClearFile(string filename)
         {
-            System.IO.File.WriteAllText(filename, string.Empty);
+            if(filename != null) System.IO.File.WriteAllText(filename, string.Empty);
         }
     }
 }

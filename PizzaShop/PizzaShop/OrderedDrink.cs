@@ -85,11 +85,6 @@ namespace PizzaShop
             return Drink.DrinkToCSV(drink.Name, drink.Price) + ',' + quantity;
         }
 
-        public static Drink GetDrinkById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         /// <summary>
         /// Get all the saved drinks from file
         /// </summary>
@@ -121,10 +116,21 @@ namespace PizzaShop
         {
             return $"{this.Drink.Name} {this.Quantity} X {this.Drink.Price}";
         }
+        /// <summary>
+        /// Clears the content of the ordered drink file
+        /// </summary>
         public static void ClearFile()
         {
             Utils.ClearFile(filename);
         }
 
+        /// <summary>
+        /// calculates the total price of a drink
+        /// </summary>
+        /// <returns></returns>
+        public float CalculatePrice()
+        {
+            return Drink.Price * Quantity;
+        }
     }
 }

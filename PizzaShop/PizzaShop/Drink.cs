@@ -15,7 +15,7 @@ namespace PizzaShop
             set;
         }
 
-        // TODO: this can have restictions on the minimum price
+        // TODO: this can have restictions on the minimum price in the future
         public float Price
         {
             get;
@@ -29,6 +29,11 @@ namespace PizzaShop
         }
 
         // constructors
+        /// <summary>
+        /// Creates a drink and adds it to file
+        /// </summary>
+        /// <param name="name"> drink name</param>
+        /// <param name="price"> price name </param>
         public Drink(string name, float price)
         {
             this.Name = name;
@@ -36,6 +41,12 @@ namespace PizzaShop
             AddDrinkToFile(name, price);
         }
 
+        /// <summary>
+        /// creates a drink object
+        /// </summary>
+        /// <param name="id"> id of the drink</param>
+        /// <param name="name"> name of the drink</param>
+        /// <param name="price"> price of the drink</param>
         public Drink(int id, string name, float price)
         {
             this.Name = name;
@@ -43,7 +54,6 @@ namespace PizzaShop
             this.Id = id;
         }
 
-        // methods
 
         /// <summary>
         /// saves the drink to a file

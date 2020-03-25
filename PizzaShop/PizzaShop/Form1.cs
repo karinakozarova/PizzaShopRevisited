@@ -10,11 +10,13 @@ namespace PizzaShop
         public Form1()
         {
             InitializeComponent();
-            s = new Shop("My Shop");
+            s = Shop.OrdersFromFile("My Shop");
+            s.Name = "My Shop";
             PopulateAll();
             revenueDateTImePicker.Value = DateTime.Today;
+            totalRevenueLbl.Text = s.GetRevenue().ToString();
         }
-
+        
         public void PopulateAll()
         {
             RefreshCustomers();
@@ -173,11 +175,16 @@ namespace PizzaShop
             orderedPizzasLbx.Items.Clear();
         }
 
-        private void clearBttn_Click(object sender, EventArgs e)
+        private void ClearOrderFiles()
         {
             OrderedDrink.ClearFile();
             OrderedPizza.ClearFile();
+            Order.ClearFile();
             ClearOrder();
+        }
+        private void clearBttn_Click(object sender, EventArgs e)
+        {
+            ClearOrderFiles();
         }
 
         private void saveOrderBttn_Click(object sender, EventArgs e)
@@ -206,7 +213,7 @@ namespace PizzaShop
             }
             Customer customer = (Customer)customerOrderTbx.SelectedItem;
             s.AddOrder(new Order(customer, pizzas, drinks, true));
-            ClearOrder();
+            ClearOrderFiles();
             MessageBox.Show("Order was successfully added");
         }
 
@@ -218,7 +225,13 @@ namespace PizzaShop
 
         private void cancelOrderBttn_Click(object sender, EventArgs e)
         {
-
+            if (allOrdersLbx.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select the order to Cancel");
+                return;
+            }
+            Order o = (Order)allOrdersLbx.SelectedItem;
+            o.Cancel();
         }
 
         private void editCustomerBtn_Click(object sender, EventArgs e)

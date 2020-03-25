@@ -34,12 +34,34 @@ namespace PizzaShop
         /// </summary>
         /// <param name="name"> name of customer </param>
         /// <param name="email"> customer email </param>
-        /// <param name="addToDB"> should it be added to the database </param>
         public Customer(string name, string email)
         {
             AddCustomerToFile(name, email);
             this.Name = name;
             this.Email = email;
+        }  
+        
+        /// <summary>
+        /// Creates a new customer and adds it to the database
+        /// </summary>
+        /// <param name="name"> name of customer </param>
+        /// <param name="addToDB"> should it be added to the database </param>
+        public Customer(string name)
+        {
+            AddCustomerToFile(name, "");
+            this.Name = name;
+            this.Email = "";
+        }
+        /// <summary>
+        /// Creates a new customer and adds it to the database
+        /// </summary>
+        /// <param name="name"> name of customer </param>
+        /// <param name="addToDB"> should it be added to the database </param>
+        public Customer(int id, string name)
+        {
+            this.Id = id;
+            this.Name = name;
+            this.Email = "";
         }
 
         /// <summary>
@@ -55,6 +77,11 @@ namespace PizzaShop
             this.Email = email;
         }
 
+        /// <summary>
+        /// Edit the data of a customer
+        /// </summary>
+        /// <param name="name"> customer name </param>
+        /// <param name="email"> customer email</param>
         public void EditCustomer(string name, string email)
         {
             string previousValue = this.CustomerToCSV();
@@ -66,6 +93,10 @@ namespace PizzaShop
             text = text.Replace(previousValue, newValue);
             File.WriteAllText(filename, text);
         }
+
+        /// <summary>
+        /// Deletes a customer
+        /// </summary>
         public void Delete()
         {
             var tempFile = Path.GetTempFileName();
@@ -75,7 +106,6 @@ namespace PizzaShop
             File.Move(tempFile, filename);
         }
 
-        // methods
 
         /// <summary>
         /// Adds a customer to the file
@@ -93,16 +123,6 @@ namespace PizzaShop
 
             return 1;
 
-        }
-
-        /// <summary>
-        /// returns the customer with a specified id
-        /// </summary>
-        /// <param name="id"> the id of the person we are searching for </param>
-        /// <returns> the customer if found, null if not</returns>
-        public static Customer GetCustomerById(int id)
-        {
-            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -126,15 +146,31 @@ namespace PizzaShop
             return customers;
         }
 
+        /// <summary>
+        /// transforms the object to a CSV
+        /// </summary>
+        /// <returns></returns>
         public string CustomerToCSV()
         {
             return this.Name + ',' + this.Email;
         }
 
+        /// <summary>
+        /// data to a CSV
+        /// </summary>
+        /// <param name="name"> the name of the customer </param>
+        /// <param name="email"> the email of the customer </param>
+        /// <returns></returns>
         private static string CustomerToCSV(string name, string email)
         {
             return name + ',' + email;
         }
+
+        /// <summary>
+        /// customer object to a CSV
+        /// </summary>
+        /// <param name="c"> customer </param>
+        /// <returns></returns>
         public static string CustomerToCSV(Customer c)
         {
             return c.Name + ',' + c.Email;

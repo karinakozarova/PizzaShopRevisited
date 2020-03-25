@@ -30,6 +30,12 @@ namespace PizzaShop
             set;
         }
 
+        /// <summary>
+        /// Create a new pizza and save it to file
+        /// </summary>
+        /// <param name="PizzaBaseName"> name of the pizza </param>
+        /// <param name="ThicknessAdditionPrice"> thickness price </param>
+        /// <param name="FilledAdditionPrice"> fillness price</param>
         public Pizza(string PizzaBaseName, float ThicknessAdditionPrice, float FilledAdditionPrice)
         {
             this.PizzaBaseName = PizzaBaseName;
@@ -38,7 +44,13 @@ namespace PizzaShop
             AddPizzaToFile(PizzaBaseName, ThicknessAdditionPrice, FilledAdditionPrice);
         }
 
-
+        /// <summary>
+        /// Create a pizza object
+        /// </summary>
+        /// <param name="Id"> id (TODO)</param>
+        /// <param name="PizzaBaseName"> name of the pizza </param>
+        /// <param name="ThicknessAdditionPrice"> thickness price </param>
+        /// <param name="FilledAdditionPrice"> fillness price</param>
         public Pizza(int Id, string PizzaBaseName, float ThicknessAdditionPrice, float FilledAdditionPrice)
         {
             this.PizzaBaseName = PizzaBaseName;
@@ -46,8 +58,14 @@ namespace PizzaShop
             this.FilledAdditionPrice = FilledAdditionPrice;
             this.Id = Id;
         }
-       
 
+        /// <summary>
+        /// Add the pizza to a file
+        /// </summary>
+        /// <param name="PizzaBaseName"> name of the pizza </param>
+        /// <param name="ThicknessAdditionPrice"> thickness price </param>
+        /// <param name="FilledAdditionPrice"> fillness price</param>
+        /// <returns></returns>
         public int AddPizzaToFile(string PizzaBaseName, float ThicknessAdditionPrice, float FilledAdditionPrice)
         {
             using (StreamWriter sw = File.AppendText(fileName))
@@ -59,15 +77,21 @@ namespace PizzaShop
             return 1;
         }
 
+        /// <summary>
+        /// change object to CSV
+        /// </summary>
+        /// <param name="PizzaBaseName"> name of the pizza </param>
+        /// <param name="ThicknessAdditionPrice"> thickness price </param>
+        /// <param name="FilledAdditionPrice"> fillness price</param>
+        /// <returns></returns>
         public static string PizzaToCSV(string pizzaBaseName, float thicknessAdditionPrice, float filledAdditionPrice)
         {
             return pizzaBaseName  + ',' + thicknessAdditionPrice + ',' + filledAdditionPrice;
         }
-
-        public static Pizza GetPizzaById(int id)
-        {
-            throw new NotImplementedException();
-        }
+        /// <summary>
+        /// Get all ordered pizzas from file
+        /// </summary>
+        /// <returns> List<Pizza></returns>
         public static List<Pizza> GetAllPizzas()
         {
             List<Pizza> pizzas = new List<Pizza>();
@@ -85,6 +109,10 @@ namespace PizzaShop
             return pizzas;
         }
 
+        /// <summary>
+        /// stringify the object
+        /// </summary>
+        /// <returns> pizza to string</returns>
         public override string ToString()
         {
             return this.PizzaBaseName;
