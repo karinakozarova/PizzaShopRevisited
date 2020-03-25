@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PizzaShop
 {
@@ -39,7 +36,17 @@ namespace PizzaShop
             this.drinks = drinks;
             this.IsCancelled = false;
             this.OrderedAt = Utils.GetDateTime();
-            if(!temporary) AddOrderToFile(Customer, pizzas , drinks, IsCancelled, OrderedAt);
+            if (!temporary) AddOrderToFile(Customer, pizzas, drinks, IsCancelled, OrderedAt);
+        }
+
+        public Order(Customer Customer, bool isCancelled, DateTime orderedAt, List<OrderedPizza> pizzas = null, List<OrderedDrink> drinks = null, bool temporary = false)
+        {
+            this.Customer = Customer;
+            this.pizzas = pizzas;
+            this.drinks = drinks;
+            this.IsCancelled = isCancelled;
+            this.OrderedAt = orderedAt;
+            if (!temporary) AddOrderToFile(Customer, pizzas, drinks, IsCancelled, OrderedAt);
         }
 
         private int AddOrderToFile(Customer customer, List<OrderedPizza> pizzas, List<OrderedDrink> drinks, bool IsCancelled, DateTime OrderedAt)
@@ -71,18 +78,8 @@ namespace PizzaShop
             {
                 string shopfile = File.ReadAllText(shopName);
                 shopfile = shopfile.Replace(previousValue, newValue);
-                File.WriteAllText(filename, text);
+                File.WriteAllText(shopName, shopfile);
             }
-        }
-
-        public void GenerateReceipt()
-        {
-            throw new NotImplementedException();
-        }
-
-        public string GetReceipt()
-        {
-            throw new NotImplementedException();
         }
 
         internal static string OrderToCSV(Order o)
@@ -133,12 +130,12 @@ namespace PizzaShop
         public float CalculateTotalCost()
         {
             float total = 0.0f;
-            foreach(OrderedPizza p in pizzas)
+            foreach (OrderedPizza p in pizzas)
             {
                 total += p.CalculatePrice();
             }
 
-            foreach(OrderedDrink d in drinks)
+            foreach (OrderedDrink d in drinks)
             {
                 total += d.CalculatePrice();
             }
@@ -148,7 +145,7 @@ namespace PizzaShop
 
         public override string ToString()
         {
-            return IsCancelled ? "CANCELLED": "" + $"({this.OrderedAt}){this.Customer} ordered {this.drinks.Count} drinks and {this.pizzas.Count} pizzas";
+            return IsCancelled ? "CANCELLED" : "" + $"({this.OrderedAt}){this.Customer} ordered {this.drinks.Count} drinks and {this.pizzas.Count} pizzas";
         }
     }
 }

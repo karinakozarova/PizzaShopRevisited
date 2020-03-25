@@ -218,7 +218,7 @@ namespace PizzaShop
                                     OrderedDrink d = new OrderedDrink(drink, Convert.ToInt32(drinks[2]));
                                     orderedDrinks.Add(d);
                                 }
-                                Order o = new Order(c, orderedPizzas, orderedDrinks);
+                                Order o = new Order(c, IsCancelled, createdAt, orderedPizzas, orderedDrinks);
                                 orders.Add(o);
                             }
                         }

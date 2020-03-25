@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace PizzaShop
@@ -37,9 +38,10 @@ namespace PizzaShop
         private void PopulateOrders()
         {
             List<Order> orders = s.GetOrders();
+            List<Order> sortedOrders = orders.OrderByDescending(o => o.CalculateTotalCost()).ToList();
 
             allOrdersLbx.Items.Clear();
-            foreach (Order o in orders)
+            foreach (Order o in sortedOrders)
             {
                 allOrdersLbx.Items.Add(o);
             }
@@ -224,6 +226,7 @@ namespace PizzaShop
                 Customer customer = (Customer)customerOrderTbx.SelectedItem;
                 s.AddOrder(new Order(customer, pizzas, drinks, true));
                 ClearOrderFiles();
+                PopulateAll();
                 MessageBox.Show("Order was successfully added");
             }
             catch (Exception)
@@ -249,6 +252,7 @@ namespace PizzaShop
             {
                 MessageBox.Show("Couldn't parse the information.");
             }
+            PopulateOrders();
         }
 
         private void editCustomerBtn_Click(object sender, EventArgs e)
