@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace PizzaShop
 {
-    class Pizza
+    public class Pizza
     {
         public const float BasePrice = 5.99f;
 

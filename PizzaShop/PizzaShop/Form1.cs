@@ -294,7 +294,20 @@ namespace PizzaShop
 
         private void viewReceiptBttn_Click(object sender, EventArgs e)
         {
-
+            if (allOrdersLbx.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select an order");
+                return;
+            }
+            try
+            {
+                Order order = (Order)allOrdersLbx.SelectedItem;
+                (new Receipt(s, order)).Show();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Couldn't parse the information.");
+            }
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace PizzaShop
 {
-    class Drink
+    public class Drink
     {
         const string filename = "drink";
 

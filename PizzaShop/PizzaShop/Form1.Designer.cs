@@ -50,7 +50,6 @@
             this.orderedPizzasLbx = new System.Windows.Forms.ListBox();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.viewReceiptBttn = new System.Windows.Forms.Button();
-            this.removeOrderBttn = new System.Windows.Forms.Button();
             this.cancelOrderBttn = new System.Windows.Forms.Button();
             this.allOrdersLbx = new System.Windows.Forms.ListBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -130,7 +129,7 @@
             // 
             this.shopNameLbl.AutoSize = true;
             this.shopNameLbl.Font = new System.Drawing.Font("Montserrat", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.shopNameLbl.Location = new System.Drawing.Point(592, 243);
+            this.shopNameLbl.Location = new System.Drawing.Point(628, 243);
             this.shopNameLbl.Name = "shopNameLbl";
             this.shopNameLbl.Size = new System.Drawing.Size(476, 99);
             this.shopNameLbl.TabIndex = 8;
@@ -162,9 +161,9 @@
             this.dateRevenueLbl.Font = new System.Drawing.Font("Montserrat", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateRevenueLbl.Location = new System.Drawing.Point(362, 177);
             this.dateRevenueLbl.Name = "dateRevenueLbl";
-            this.dateRevenueLbl.Size = new System.Drawing.Size(77, 50);
+            this.dateRevenueLbl.Size = new System.Drawing.Size(46, 50);
             this.dateRevenueLbl.TabIndex = 5;
-            this.dateRevenueLbl.Text = "15$";
+            this.dateRevenueLbl.Text = "0";
             // 
             // dailyRevenueLbl
             // 
@@ -172,9 +171,9 @@
             this.dailyRevenueLbl.Font = new System.Drawing.Font("Montserrat", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dailyRevenueLbl.Location = new System.Drawing.Point(362, 353);
             this.dailyRevenueLbl.Name = "dailyRevenueLbl";
-            this.dailyRevenueLbl.Size = new System.Drawing.Size(77, 50);
+            this.dailyRevenueLbl.Size = new System.Drawing.Size(46, 50);
             this.dailyRevenueLbl.TabIndex = 4;
-            this.dailyRevenueLbl.Text = "15$";
+            this.dailyRevenueLbl.Text = "0";
             // 
             // totalRevenueLbl
             // 
@@ -182,9 +181,9 @@
             this.totalRevenueLbl.Font = new System.Drawing.Font("Montserrat", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.totalRevenueLbl.Location = new System.Drawing.Point(351, 39);
             this.totalRevenueLbl.Name = "totalRevenueLbl";
-            this.totalRevenueLbl.Size = new System.Drawing.Size(88, 50);
+            this.totalRevenueLbl.Size = new System.Drawing.Size(46, 50);
             this.totalRevenueLbl.TabIndex = 3;
-            this.totalRevenueLbl.Text = "20$";
+            this.totalRevenueLbl.Text = "0";
             // 
             // label6
             // 
@@ -248,9 +247,9 @@
             // 
             this.customerOrderTbx.Font = new System.Drawing.Font("Montserrat", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.customerOrderTbx.FormattingEnabled = true;
-            this.customerOrderTbx.Location = new System.Drawing.Point(32, 212);
+            this.customerOrderTbx.Location = new System.Drawing.Point(32, 95);
             this.customerOrderTbx.Name = "customerOrderTbx";
-            this.customerOrderTbx.Size = new System.Drawing.Size(372, 47);
+            this.customerOrderTbx.Size = new System.Drawing.Size(612, 47);
             this.customerOrderTbx.TabIndex = 20;
             // 
             // saveOrderBttn
@@ -277,7 +276,7 @@
             // addDrinkToOrderBttn
             // 
             this.addDrinkToOrderBttn.Font = new System.Drawing.Font("Montserrat", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addDrinkToOrderBttn.Location = new System.Drawing.Point(373, 110);
+            this.addDrinkToOrderBttn.Location = new System.Drawing.Point(373, 148);
             this.addDrinkToOrderBttn.Name = "addDrinkToOrderBttn";
             this.addDrinkToOrderBttn.Size = new System.Drawing.Size(271, 60);
             this.addDrinkToOrderBttn.TabIndex = 17;
@@ -288,7 +287,7 @@
             // addPizzaToOrderBttn
             // 
             this.addPizzaToOrderBttn.Font = new System.Drawing.Font("Montserrat", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addPizzaToOrderBttn.Location = new System.Drawing.Point(32, 110);
+            this.addPizzaToOrderBttn.Location = new System.Drawing.Point(32, 148);
             this.addPizzaToOrderBttn.Name = "addPizzaToOrderBttn";
             this.addPizzaToOrderBttn.Size = new System.Drawing.Size(335, 60);
             this.addPizzaToOrderBttn.TabIndex = 16;
@@ -317,7 +316,6 @@
             // tabPage6
             // 
             this.tabPage6.Controls.Add(this.viewReceiptBttn);
-            this.tabPage6.Controls.Add(this.removeOrderBttn);
             this.tabPage6.Controls.Add(this.cancelOrderBttn);
             this.tabPage6.Controls.Add(this.allOrdersLbx);
             this.tabPage6.Location = new System.Drawing.Point(4, 42);
@@ -330,30 +328,20 @@
             // viewReceiptBttn
             // 
             this.viewReceiptBttn.Font = new System.Drawing.Font("Montserrat", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.viewReceiptBttn.Location = new System.Drawing.Point(767, 225);
+            this.viewReceiptBttn.Location = new System.Drawing.Point(30, 424);
             this.viewReceiptBttn.Name = "viewReceiptBttn";
-            this.viewReceiptBttn.Size = new System.Drawing.Size(370, 63);
+            this.viewReceiptBttn.Size = new System.Drawing.Size(625, 63);
             this.viewReceiptBttn.TabIndex = 22;
             this.viewReceiptBttn.Text = "View receipt";
             this.viewReceiptBttn.UseVisualStyleBackColor = true;
             this.viewReceiptBttn.Click += new System.EventHandler(this.viewReceiptBttn_Click);
             // 
-            // removeOrderBttn
-            // 
-            this.removeOrderBttn.Font = new System.Drawing.Font("Montserrat", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.removeOrderBttn.Location = new System.Drawing.Point(767, 125);
-            this.removeOrderBttn.Name = "removeOrderBttn";
-            this.removeOrderBttn.Size = new System.Drawing.Size(370, 63);
-            this.removeOrderBttn.TabIndex = 21;
-            this.removeOrderBttn.Text = "Delete order";
-            this.removeOrderBttn.UseVisualStyleBackColor = true;
-            // 
             // cancelOrderBttn
             // 
             this.cancelOrderBttn.Font = new System.Drawing.Font("Montserrat", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cancelOrderBttn.Location = new System.Drawing.Point(767, 32);
+            this.cancelOrderBttn.Location = new System.Drawing.Point(685, 424);
             this.cancelOrderBttn.Name = "cancelOrderBttn";
-            this.cancelOrderBttn.Size = new System.Drawing.Size(370, 63);
+            this.cancelOrderBttn.Size = new System.Drawing.Size(462, 63);
             this.cancelOrderBttn.TabIndex = 20;
             this.cancelOrderBttn.Text = "Cancel order";
             this.cancelOrderBttn.UseVisualStyleBackColor = true;
@@ -366,7 +354,7 @@
             this.allOrdersLbx.ItemHeight = 39;
             this.allOrdersLbx.Location = new System.Drawing.Point(21, 32);
             this.allOrdersLbx.Name = "allOrdersLbx";
-            this.allOrdersLbx.Size = new System.Drawing.Size(706, 472);
+            this.allOrdersLbx.Size = new System.Drawing.Size(1126, 355);
             this.allOrdersLbx.TabIndex = 13;
             // 
             // tabPage3
@@ -457,7 +445,7 @@
             // 
             // addNewCustomerBttn
             // 
-            this.addNewCustomerBttn.Location = new System.Drawing.Point(47, 258);
+            this.addNewCustomerBttn.Location = new System.Drawing.Point(47, 249);
             this.addNewCustomerBttn.Name = "addNewCustomerBttn";
             this.addNewCustomerBttn.Size = new System.Drawing.Size(382, 55);
             this.addNewCustomerBttn.TabIndex = 2;
@@ -717,7 +705,6 @@
         private System.Windows.Forms.Button clearBttn;
         private System.Windows.Forms.TabPage tabPage6;
         private System.Windows.Forms.ListBox allOrdersLbx;
-        private System.Windows.Forms.Button removeOrderBttn;
         private System.Windows.Forms.Button cancelOrderBttn;
         private System.Windows.Forms.Button viewReceiptBttn;
         private System.Windows.Forms.Button editCustomerBtn;

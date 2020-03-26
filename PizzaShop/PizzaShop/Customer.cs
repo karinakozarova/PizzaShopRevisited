@@ -39,8 +39,8 @@ namespace PizzaShop
             AddCustomerToFile(name, email);
             this.Name = name;
             this.Email = email;
-        }  
-        
+        }
+
         /// <summary>
         /// Creates a new customer and adds it to the database
         /// </summary>

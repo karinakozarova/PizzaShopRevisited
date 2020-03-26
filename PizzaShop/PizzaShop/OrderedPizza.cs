@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PizzaShop
 {
-    class OrderedPizza
+    public class OrderedPizza
     {
         // constants
         const string filename = "orderedPizza";
@@ -146,17 +146,33 @@ namespace PizzaShop
             return Pizza.PizzaBaseName + " x " + this.Quantity + " = " + CalculatePrice();
         }
 
+        public string PizzaQuantityAndPrice()
+        {
+            return $"{Quantity} X {GetBasePrice()}";
+        }
+        public string FullPizzaName()
+        {
+            return Pizza.PizzaBaseName + (IsThick ? " - thick" : "") + (IsFilled ? " - filled" : "");
+        }
+
+        /// <summary>
+        /// Get price for the orderered pizza (only one ordered)
+        /// </summary>
+        /// <returns></returns>
+        public float GetBasePrice()
+        {
+            float price = Pizza.BasePrice;
+            if (this.IsFilled) price += this.Pizza.FilledAdditionPrice;
+            if (this.IsThick) price += this.Pizza.ThicknessAdditionPrice;
+            return price;
+        }
         /// <summary>
         /// calculate the total cost of the order
         /// </summary>
         /// <returns></returns>
         public float CalculatePrice()
         {
-            float price = Pizza.BasePrice;
-            if (this.IsFilled) price += this.Pizza.FilledAdditionPrice;
-            if (this.IsThick) price += this.Pizza.ThicknessAdditionPrice;
-
-            return price * Quantity;
+            return GetBasePrice() * Quantity;
         }
     }
 }

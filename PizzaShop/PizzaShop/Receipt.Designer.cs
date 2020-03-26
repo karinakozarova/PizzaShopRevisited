@@ -28,61 +28,72 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.shopNameLbl = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.totalLbl = new System.Windows.Forms.Label();
+            this.orderInformationLbl = new System.Windows.Forms.Label();
+            this.flwOrderedItems = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
             // 
-            // label1
+            // shopNameLbl
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Montserrat", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(27, 31);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(110, 44);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
+            this.shopNameLbl.AutoSize = true;
+            this.shopNameLbl.Font = new System.Drawing.Font("Montserrat", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.shopNameLbl.Location = new System.Drawing.Point(27, 31);
+            this.shopNameLbl.Name = "shopNameLbl";
+            this.shopNameLbl.Size = new System.Drawing.Size(110, 44);
+            this.shopNameLbl.TabIndex = 0;
+            this.shopNameLbl.Text = "label1";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Montserrat", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(27, 418);
+            this.label2.Location = new System.Drawing.Point(28, 523);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(116, 44);
+            this.label2.Size = new System.Drawing.Size(104, 44);
             this.label2.TabIndex = 1;
-            this.label2.Text = "label2";
+            this.label2.Text = "Total:";
             // 
-            // label3
+            // totalLbl
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Montserrat", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(314, 418);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(116, 44);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "label3";
+            this.totalLbl.AutoSize = true;
+            this.totalLbl.Font = new System.Drawing.Font("Montserrat", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalLbl.Location = new System.Drawing.Point(413, 523);
+            this.totalLbl.Name = "totalLbl";
+            this.totalLbl.Size = new System.Drawing.Size(116, 44);
+            this.totalLbl.TabIndex = 2;
+            this.totalLbl.Text = "label3";
             // 
-            // label4
+            // orderInformationLbl
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Montserrat", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(27, 484);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(119, 44);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "label4";
+            this.orderInformationLbl.AutoSize = true;
+            this.orderInformationLbl.Font = new System.Drawing.Font("Montserrat", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.orderInformationLbl.Location = new System.Drawing.Point(27, 596);
+            this.orderInformationLbl.Name = "orderInformationLbl";
+            this.orderInformationLbl.Size = new System.Drawing.Size(105, 39);
+            this.orderInformationLbl.TabIndex = 3;
+            this.orderInformationLbl.Text = "label4";
+            // 
+            // flwOrderedItems
+            // 
+            this.flwOrderedItems.AutoScroll = true;
+            this.flwOrderedItems.AutoSize = true;
+            this.flwOrderedItems.Location = new System.Drawing.Point(36, 109);
+            this.flwOrderedItems.Name = "flwOrderedItems";
+            this.flwOrderedItems.Size = new System.Drawing.Size(726, 383);
+            this.flwOrderedItems.TabIndex = 4;
             // 
             // Receipt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(454, 591);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
+            this.ClientSize = new System.Drawing.Size(787, 686);
+            this.Controls.Add(this.flwOrderedItems);
+            this.Controls.Add(this.orderInformationLbl);
+            this.Controls.Add(this.totalLbl);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.shopNameLbl);
             this.Name = "Receipt";
             this.Text = "Receipt";
             this.ResumeLayout(false);
@@ -92,9 +103,10 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label shopNameLbl;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label totalLbl;
+        private System.Windows.Forms.Label orderInformationLbl;
+        private System.Windows.Forms.FlowLayoutPanel flwOrderedItems;
     }
 }

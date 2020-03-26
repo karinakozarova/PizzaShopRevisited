@@ -4,7 +4,7 @@ using System.IO;
 
 namespace PizzaShop
 {
-    class Order
+    public class Order
     {
         const string filename = "orders";
         // properties
@@ -29,6 +29,13 @@ namespace PizzaShop
         private List<OrderedDrink> drinks;
 
         // constructors
+        /// <summary>
+        /// Add new Order
+        /// </summary>
+        /// <param name="Customer"> customer who ordered</param>
+        /// <param name="pizzas"> list of ordered pizzas </param>
+        /// <param name="drinks">list of ordered drinks</param>
+        /// <param name="temporary"> should it be added to the file</param>
         public Order(Customer Customer, List<OrderedPizza> pizzas = null, List<OrderedDrink> drinks = null, bool temporary = false)
         {
             this.Customer = Customer;
@@ -39,6 +46,15 @@ namespace PizzaShop
             if (!temporary) AddOrderToFile(Customer, pizzas, drinks, IsCancelled, OrderedAt);
         }
 
+        /// <summary>
+        /// Add new Order
+        /// </summary>
+        /// <param name="Customer"> customer who ordered</param>
+        /// <param name="isCancelled"> is the order cancelled</param>
+        /// <param name="orderedAt"> when was it ordered</param>
+        /// <param name="pizzas"> list of ordered pizzas </param>
+        /// <param name="drinks">list of ordered drinks</param>
+        /// <param name="temporary"> should it be added to the file</param>
         public Order(Customer Customer, bool isCancelled, DateTime orderedAt, List<OrderedPizza> pizzas = null, List<OrderedDrink> drinks = null, bool temporary = false)
         {
             this.Customer = Customer;
@@ -49,6 +65,15 @@ namespace PizzaShop
             if (!temporary) AddOrderToFile(Customer, pizzas, drinks, IsCancelled, OrderedAt);
         }
 
+        /// <summary>
+        /// Add new Order to file
+        /// </summary>
+        /// <param name="Customer"> customer who ordered</param>
+        /// <param name="isCancelled"> is the order cancelled</param>
+        /// <param name="orderedAt"> when was it ordered</param>
+        /// <param name="pizzas"> list of ordered pizzas </param>
+        /// <param name="drinks">list of ordered drinks</param>
+        /// <returns></returns>
         private int AddOrderToFile(Customer customer, List<OrderedPizza> pizzas, List<OrderedDrink> drinks, bool IsCancelled, DateTime OrderedAt)
         {
             using (StreamWriter sw = File.AppendText(filename))
@@ -82,22 +107,44 @@ namespace PizzaShop
             }
         }
 
+        /// <summary>
+        /// Conver order object to CSV
+        /// </summary>
+        /// <param name="o"> Order</param>
+        /// <returns></returns>
         internal static string OrderToCSV(Order o)
         {
             return "ORDER" + Environment.NewLine + o.IsCancelled + "," + o.OrderedAt + "," + o.Customer + Environment.NewLine + o.PizzasToCSV() + o.DrinksToCSV() + Environment.NewLine + "ENDORDER";
         }
 
+        /// <summary>
+        /// Conver order to CSV
+        /// </summary>
+        /// <returns></returns>
         internal string OrderToCSV()
         {
             return OrderToCSV(this);
         }
 
+        /// <summary>
+        /// Conver order to CSV
+        /// </summary>
+        /// <param name="customer"> customer who ordered</param>
+        /// <param name="IsCancelled"> is the order cancelled</param>
+        /// <param name="OrderedAt"> when was it ordered</param>
+        /// <param name="pizzas"> list of ordered pizzas </param>
+        /// <param name="drinks">list of ordered drinks</param>
+        /// <returns> csv string</returns>
         internal static string OrderToCSV(Customer customer, List<OrderedPizza> pizzas, List<OrderedDrink> drinks, bool IsCancelled, DateTime OrderedAt)
         {
             Order o = new Order(customer, pizzas, drinks, true);
             return OrderToCSV(o);
         }
 
+        /// <summary>
+        /// Convert the order drinks to cSV
+        /// </summary>
+        /// <returns> csv string</returns>
         public string DrinksToCSV()
         {
             string result = "DRINKS";
@@ -110,6 +157,10 @@ namespace PizzaShop
             return result;
         }
 
+        /// <summary>
+        /// Convert the order pizzas to cSV
+        /// </summary>
+        /// <returns> csv string</returns>
         private string PizzasToCSV()
         {
             string result = "PIZZAS";
@@ -122,11 +173,18 @@ namespace PizzaShop
             return result;
         }
 
+        /// <summary>
+        /// delete content of the file where they are saved
+        /// </summary>
         internal static void ClearFile()
         {
             Utils.ClearFile(filename);
         }
 
+        /// <summary>
+        /// Calculate the total price of the order
+        /// </summary>
+        /// <returns> price </returns>
         public float CalculateTotalCost()
         {
             float total = 0.0f;
@@ -143,9 +201,31 @@ namespace PizzaShop
             return total;
         }
 
+        /// <summary>
+        /// get all pizzas from order
+        /// </summary>
+        /// <returns> list of pizzas </returns>
+        public List<OrderedPizza> GetPizzas()
+        {
+            return pizzas;
+        }
+
+        /// <summary>
+        /// get all drinks from order
+        /// </summary>
+        /// <returns> list of drinks </returns>
+        public List<OrderedDrink> GetDrinks()
+        {
+            return drinks;
+        }
+
+        /// <summary>
+        /// converts order to string
+        /// </summary>
+        /// <returns> order as string</returns>
         public override string ToString()
         {
-            return IsCancelled ? "CANCELLED" : "" + $"({this.OrderedAt}){this.Customer} ordered {this.drinks.Count} drinks and {this.pizzas.Count} pizzas";
+            return (IsCancelled ? "CANCELLED" : "" ) + $"({this.OrderedAt}){this.Customer} ordered {this.drinks.Count} drinks and {this.pizzas.Count} pizzas";
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace PizzaShop
 {
-    class OrderedDrink
+    public class OrderedDrink
     {
         // constants
         const string filename = "orderedDrink";
@@ -55,6 +55,12 @@ namespace PizzaShop
             this.Quantity = quantity;
             this.Id = id;
         }
+
+        internal string DrinkQuantityAndPrice()
+        {
+            return $"{Quantity} X {Drink.Price}";
+        }
+
 
         // methods
         /// <summary>
@@ -131,6 +137,11 @@ namespace PizzaShop
         public float CalculatePrice()
         {
             return Drink.Price * Quantity;
+        }
+
+        public string GetDrinkName()
+        {
+            return Drink.Name;
         }
     }
 }
