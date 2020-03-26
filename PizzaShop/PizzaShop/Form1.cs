@@ -11,11 +11,13 @@ namespace PizzaShop
         public Form1()
         {
             InitializeComponent();
+            revenueDateTImePicker.Value = DateTime.Today;
+
             s = Shop.OrdersFromFile("My Shop");
             s.Name = "My Shop";
+
             shopNameLbl.Text = s.Name;
             PopulateAll();
-            revenueDateTImePicker.Value = DateTime.Today;
         }
 
         private void PopulateRevenues()

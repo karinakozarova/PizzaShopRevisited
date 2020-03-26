@@ -95,6 +95,10 @@ namespace PizzaShop
         public static List<Pizza> GetAllPizzas()
         {
             List<Pizza> pizzas = new List<Pizza>();
+            if (!File.Exists(fileName))
+            {
+                Utils.CreateEmptyFile(fileName);
+            }
             using (StreamReader file = new StreamReader(fileName))
             {
                 string line;

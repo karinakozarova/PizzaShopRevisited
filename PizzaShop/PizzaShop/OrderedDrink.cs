@@ -98,6 +98,10 @@ namespace PizzaShop
         public static List<OrderedDrink> GetAllDrinks()
         {
             List<OrderedDrink> drinks = new List<OrderedDrink>();
+            if (!File.Exists(filename))
+            {
+                Utils.CreateEmptyFile(filename);
+            }
             using (StreamReader file = new StreamReader(filename))
             {
                 string line;

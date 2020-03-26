@@ -32,6 +32,10 @@ namespace PizzaShop
 
             try
             {
+                if (!File.Exists(filename))
+                {
+                    Utils.CreateEmptyFile(filename);
+                }
                 using (StreamReader file = new StreamReader(Name))
                 {
                     string line = file.ReadLine(); // reads shop name
@@ -176,6 +180,10 @@ namespace PizzaShop
             Shop s = null;
             try
             {
+                if (!File.Exists(filename))
+                {
+                    Utils.CreateEmptyFile(filename);
+                }
                 using (StreamReader file = new StreamReader(filename))
                 {
                     string shopName = file.ReadLine();

@@ -58,8 +58,6 @@
             this.customersLbx = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.importCustomersBttn = new System.Windows.Forms.Button();
-            this.exportCustomersBttn = new System.Windows.Forms.Button();
             this.addNewCustomerBttn = new System.Windows.Forms.Button();
             this.emailNameTbx = new System.Windows.Forms.TextBox();
             this.customerNameTbx = new System.Windows.Forms.TextBox();
@@ -129,7 +127,7 @@
             // 
             this.shopNameLbl.AutoSize = true;
             this.shopNameLbl.Font = new System.Drawing.Font("Montserrat", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.shopNameLbl.Location = new System.Drawing.Point(628, 243);
+            this.shopNameLbl.Location = new System.Drawing.Point(631, 227);
             this.shopNameLbl.Name = "shopNameLbl";
             this.shopNameLbl.Size = new System.Drawing.Size(476, 99);
             this.shopNameLbl.TabIndex = 8;
@@ -139,7 +137,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Montserrat", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(523, 111);
+            this.label11.Location = new System.Drawing.Point(526, 95);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(636, 132);
             this.label11.TabIndex = 7;
@@ -207,10 +205,10 @@
             // 
             // revenueDateTImePicker
             // 
-            this.revenueDateTImePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.revenueDateTImePicker.Location = new System.Drawing.Point(62, 247);
+            this.revenueDateTImePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.revenueDateTImePicker.Location = new System.Drawing.Point(55, 243);
             this.revenueDateTImePicker.Name = "revenueDateTImePicker";
-            this.revenueDateTImePicker.Size = new System.Drawing.Size(396, 32);
+            this.revenueDateTImePicker.Size = new System.Drawing.Size(381, 44);
             this.revenueDateTImePicker.TabIndex = 0;
             this.revenueDateTImePicker.ValueChanged += new System.EventHandler(this.revenueDateTImePicker_ValueChanged);
             // 
@@ -364,8 +362,6 @@
             this.tabPage3.Controls.Add(this.customersLbx);
             this.tabPage3.Controls.Add(this.label2);
             this.tabPage3.Controls.Add(this.label1);
-            this.tabPage3.Controls.Add(this.importCustomersBttn);
-            this.tabPage3.Controls.Add(this.exportCustomersBttn);
             this.tabPage3.Controls.Add(this.addNewCustomerBttn);
             this.tabPage3.Controls.Add(this.emailNameTbx);
             this.tabPage3.Controls.Add(this.customerNameTbx);
@@ -409,7 +405,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Montserrat", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(40, 138);
+            this.label2.Location = new System.Drawing.Point(53, 186);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(99, 39);
             this.label2.TabIndex = 6;
@@ -419,33 +415,15 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Montserrat", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(40, 23);
+            this.label1.Location = new System.Drawing.Point(53, 71);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(104, 39);
             this.label1.TabIndex = 5;
             this.label1.Text = "Name";
             // 
-            // importCustomersBttn
-            // 
-            this.importCustomersBttn.Location = new System.Drawing.Point(47, 439);
-            this.importCustomersBttn.Name = "importCustomersBttn";
-            this.importCustomersBttn.Size = new System.Drawing.Size(300, 55);
-            this.importCustomersBttn.TabIndex = 4;
-            this.importCustomersBttn.Text = "Import customers";
-            this.importCustomersBttn.UseVisualStyleBackColor = true;
-            // 
-            // exportCustomersBttn
-            // 
-            this.exportCustomersBttn.Location = new System.Drawing.Point(47, 378);
-            this.exportCustomersBttn.Name = "exportCustomersBttn";
-            this.exportCustomersBttn.Size = new System.Drawing.Size(324, 55);
-            this.exportCustomersBttn.TabIndex = 3;
-            this.exportCustomersBttn.Text = "Export all customers";
-            this.exportCustomersBttn.UseVisualStyleBackColor = true;
-            // 
             // addNewCustomerBttn
             // 
-            this.addNewCustomerBttn.Location = new System.Drawing.Point(47, 249);
+            this.addNewCustomerBttn.Location = new System.Drawing.Point(60, 333);
             this.addNewCustomerBttn.Name = "addNewCustomerBttn";
             this.addNewCustomerBttn.Size = new System.Drawing.Size(382, 55);
             this.addNewCustomerBttn.TabIndex = 2;
@@ -456,7 +434,7 @@
             // emailNameTbx
             // 
             this.emailNameTbx.Font = new System.Drawing.Font("Montserrat", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emailNameTbx.Location = new System.Drawing.Point(47, 180);
+            this.emailNameTbx.Location = new System.Drawing.Point(60, 228);
             this.emailNameTbx.Name = "emailNameTbx";
             this.emailNameTbx.Size = new System.Drawing.Size(382, 47);
             this.emailNameTbx.TabIndex = 1;
@@ -464,7 +442,7 @@
             // customerNameTbx
             // 
             this.customerNameTbx.Font = new System.Drawing.Font("Montserrat", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customerNameTbx.Location = new System.Drawing.Point(47, 65);
+            this.customerNameTbx.Location = new System.Drawing.Point(60, 113);
             this.customerNameTbx.Name = "customerNameTbx";
             this.customerNameTbx.Size = new System.Drawing.Size(382, 47);
             this.customerNameTbx.TabIndex = 0;
@@ -567,7 +545,7 @@
             // 
             // addPizzaBttn
             // 
-            this.addPizzaBttn.Location = new System.Drawing.Point(44, 307);
+            this.addPizzaBttn.Location = new System.Drawing.Point(44, 362);
             this.addPizzaBttn.Name = "addPizzaBttn";
             this.addPizzaBttn.Size = new System.Drawing.Size(395, 55);
             this.addPizzaBttn.TabIndex = 16;
@@ -579,7 +557,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Montserrat", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(43, 224);
+            this.label8.Location = new System.Drawing.Point(43, 279);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(173, 39);
             this.label8.TabIndex = 15;
@@ -589,7 +567,7 @@
             // 
             this.filledPizzaPriceInput.DecimalPlaces = 2;
             this.filledPizzaPriceInput.Font = new System.Drawing.Font("Montserrat", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.filledPizzaPriceInput.Location = new System.Drawing.Point(220, 216);
+            this.filledPizzaPriceInput.Location = new System.Drawing.Point(220, 271);
             this.filledPizzaPriceInput.Name = "filledPizzaPriceInput";
             this.filledPizzaPriceInput.Size = new System.Drawing.Size(219, 47);
             this.filledPizzaPriceInput.TabIndex = 14;
@@ -599,7 +577,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Montserrat", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(43, 149);
+            this.label7.Location = new System.Drawing.Point(43, 187);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(171, 39);
             this.label7.TabIndex = 13;
@@ -609,7 +587,7 @@
             // 
             this.pizzaThickPriceInput.DecimalPlaces = 2;
             this.pizzaThickPriceInput.Font = new System.Drawing.Font("Montserrat", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pizzaThickPriceInput.Location = new System.Drawing.Point(220, 143);
+            this.pizzaThickPriceInput.Location = new System.Drawing.Point(220, 181);
             this.pizzaThickPriceInput.Name = "pizzaThickPriceInput";
             this.pizzaThickPriceInput.Size = new System.Drawing.Size(219, 47);
             this.pizzaThickPriceInput.TabIndex = 12;
@@ -619,7 +597,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Montserrat", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(43, 32);
+            this.label5.Location = new System.Drawing.Point(37, 53);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(104, 39);
             this.label5.TabIndex = 9;
@@ -628,7 +606,7 @@
             // pizzaNameTbx
             // 
             this.pizzaNameTbx.Font = new System.Drawing.Font("Montserrat", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pizzaNameTbx.Location = new System.Drawing.Point(50, 74);
+            this.pizzaNameTbx.Location = new System.Drawing.Point(44, 95);
             this.pizzaNameTbx.Name = "pizzaNameTbx";
             this.pizzaNameTbx.Size = new System.Drawing.Size(389, 47);
             this.pizzaNameTbx.TabIndex = 8;
@@ -666,8 +644,6 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.Button importCustomersBttn;
-        private System.Windows.Forms.Button exportCustomersBttn;
         private System.Windows.Forms.Button addNewCustomerBttn;
         private System.Windows.Forms.TextBox emailNameTbx;
         private System.Windows.Forms.TextBox customerNameTbx;

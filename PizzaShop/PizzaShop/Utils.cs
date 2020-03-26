@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace PizzaShop
 {
@@ -38,6 +39,15 @@ namespace PizzaShop
         public static void ClearFile(string filename)
         {
             if(filename != null) System.IO.File.WriteAllText(filename, string.Empty);
+        }
+
+        /// <summary>
+        /// Create empty file
+        /// </summary>
+        /// <param name="filename"></param>
+        public static void CreateEmptyFile(string filename)
+        {
+            File.Create(filename).Dispose();
         }
     }
 }

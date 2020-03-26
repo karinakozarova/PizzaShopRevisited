@@ -121,6 +121,10 @@ namespace PizzaShop
         public static List<Customer> GetAllCustomers()
         {
             List<Customer> customers = new List<Customer>();
+            if (!File.Exists(filename))
+            {
+                Utils.CreateEmptyFile(filename);
+            }
             using (StreamReader file = new StreamReader(filename))
             {
                 string line;
